@@ -471,7 +471,7 @@ extern "C"
  *   tail(in):
  */
 static void
-strcat_with_realloc (PT_STRING_BLOCK * sb, const char *tail)
+strcat_with_realloc (PT_STRING_BLOCK *sb, const char *tail)
 {
   char *cp = sb->body;
   int margin = 32;
@@ -496,7 +496,7 @@ strcat_with_realloc (PT_STRING_BLOCK * sb, const char *tail)
  *   continue_walk(in/out):
  */
 static PT_NODE *
-pt_lambda_check_reduce_eq (PARSER_CONTEXT * parser, PT_NODE * tree_or_name, void *void_arg, int *continue_walk)
+pt_lambda_check_reduce_eq (PARSER_CONTEXT *parser, PT_NODE *tree_or_name, void *void_arg, int *continue_walk)
 {
   PT_LAMBDA_ARG *lambda_arg = (PT_LAMBDA_ARG *) void_arg;
   PT_NODE *arg1, *tree, *name;
@@ -586,7 +586,7 @@ pt_lambda_check_reduce_eq (PARSER_CONTEXT * parser, PT_NODE * tree_or_name, void
  *   continue_walk(in/out):
  */
 static PT_NODE *
-pt_lambda_node_pre (PARSER_CONTEXT * parser, PT_NODE * tree_or_name, void *void_arg, int *continue_walk)
+pt_lambda_node_pre (PARSER_CONTEXT *parser, PT_NODE *tree_or_name, void *void_arg, int *continue_walk)
 {
   if (!tree_or_name)
     {
@@ -615,7 +615,7 @@ pt_lambda_node_pre (PARSER_CONTEXT * parser, PT_NODE * tree_or_name, void *void_
  *   continue_walk(in/out):
  */
 static PT_NODE *
-pt_lambda_node (PARSER_CONTEXT * parser, PT_NODE * tree_or_name, void *void_arg, int *continue_walk)
+pt_lambda_node (PARSER_CONTEXT *parser, PT_NODE *tree_or_name, void *void_arg, int *continue_walk)
 {
   PT_LAMBDA_ARG *lambda_arg = (PT_LAMBDA_ARG *) void_arg;
   PT_NODE *name_node, *lambda_name, *result, *next, *temp;
@@ -762,7 +762,7 @@ pt_lambda_node (PARSER_CONTEXT * parser, PT_NODE * tree_or_name, void *void_arg,
  *   continue_walk(in/out):
  */
 static PT_NODE *
-pt_find_id_node (PARSER_CONTEXT * parser, PT_NODE * tree, void *void_arg, int *continue_walk)
+pt_find_id_node (PARSER_CONTEXT *parser, PT_NODE *tree, void *void_arg, int *continue_walk)
 {
   PT_FIND_ID_INFO *info = (PT_FIND_ID_INFO *) void_arg;
 
@@ -788,7 +788,7 @@ pt_find_id_node (PARSER_CONTEXT * parser, PT_NODE * tree, void *void_arg, int *c
  *   continue_walk(in):
  */
 static PT_NODE *
-copy_node_in_tree_pre (PARSER_CONTEXT * parser, PT_NODE * old_node, void *arg, int *continue_walk)
+copy_node_in_tree_pre (PARSER_CONTEXT *parser, PT_NODE *old_node, void *arg, int *continue_walk)
 {
   PT_NODE *new_node;
   PT_TREE_COPY_INFO *tree_copy_info = (PT_TREE_COPY_INFO *) arg;
@@ -876,7 +876,7 @@ copy_node_in_tree_pre (PARSER_CONTEXT * parser, PT_NODE * old_node, void *arg, i
 *   continue_walk(in):
 */
 static PT_NODE *
-copy_node_in_tree_post (PARSER_CONTEXT * parser, PT_NODE * new_node, void *arg, int *continue_walk)
+copy_node_in_tree_post (PARSER_CONTEXT *parser, PT_NODE *new_node, void *arg, int *continue_walk)
 {
   PT_TREE_COPY_INFO *tree_copy_info = (PT_TREE_COPY_INFO *) arg;
 
@@ -913,7 +913,7 @@ copy_node_in_tree_post (PARSER_CONTEXT * parser, PT_NODE * new_node, void *arg, 
  *   void_arg(in/out):
  */
 static PT_NODE *
-pt_walk_private (PARSER_CONTEXT * parser, PT_NODE * node, void *void_arg)
+pt_walk_private (PARSER_CONTEXT *parser, PT_NODE *node, void *void_arg)
 {
   PT_WALK_ARG *walk = (PT_WALK_ARG *) void_arg;
   PT_NODE_TYPE node_type;
@@ -1000,7 +1000,7 @@ pt_walk_private (PARSER_CONTEXT * parser, PT_NODE * node, void *void_arg)
  *   post_argument(in):
  */
 PT_NODE *
-parser_walk_leaves (PARSER_CONTEXT * parser, PT_NODE * node, PT_NODE_WALK_FUNCTION pre_function, void *pre_argument,
+parser_walk_leaves (PARSER_CONTEXT *parser, PT_NODE *node, PT_NODE_WALK_FUNCTION pre_function, void *pre_argument,
 		    PT_NODE_WALK_FUNCTION post_function, void *post_argument)
 {
   PARSER_APPLY_NODE_FUNC apply;
@@ -1044,7 +1044,7 @@ parser_walk_leaves (PARSER_CONTEXT * parser, PT_NODE * node, PT_NODE_WALK_FUNCTI
  *   post_argument(in):
  */
 PT_NODE *
-parser_walk_tree (PARSER_CONTEXT * parser, PT_NODE * node, PT_NODE_WALK_FUNCTION pre_function, void *pre_argument,
+parser_walk_tree (PARSER_CONTEXT *parser, PT_NODE *node, PT_NODE_WALK_FUNCTION pre_function, void *pre_argument,
 		  PT_NODE_WALK_FUNCTION post_function, void *post_argument)
 {
   if (node == NULL)
@@ -1073,7 +1073,7 @@ parser_walk_tree (PARSER_CONTEXT * parser, PT_NODE * node, PT_NODE_WALK_FUNCTION
  *   continue_walk(in/out):
  */
 PT_NODE *
-pt_continue_walk (PARSER_CONTEXT * parser, PT_NODE * tree, void *arg, int *continue_walk)
+pt_continue_walk (PARSER_CONTEXT *parser, PT_NODE *tree, void *arg, int *continue_walk)
 {
   *continue_walk = PT_CONTINUE_WALK;
   return tree;
@@ -1093,8 +1093,8 @@ pt_continue_walk (PARSER_CONTEXT * parser, PT_NODE * tree, void *arg, int *conti
  *   dont_replace(in):
  */
 PT_NODE *
-pt_lambda_with_arg (PARSER_CONTEXT * parser, PT_NODE * tree_with_names, PT_NODE * name_node,
-		    PT_NODE * corresponding_tree, bool loc_check, int type, bool dont_replace)
+pt_lambda_with_arg (PARSER_CONTEXT *parser, PT_NODE *tree_with_names, PT_NODE *name_node,
+		    PT_NODE *corresponding_tree, bool loc_check, int type, bool dont_replace)
 {
   PT_LAMBDA_ARG lambda_arg;
   PT_NODE *tree;
@@ -1175,7 +1175,7 @@ pt_lambda_with_arg (PARSER_CONTEXT * parser, PT_NODE * tree_with_names, PT_NODE 
  *   corresponding_tree(in):
  */
 PT_NODE *
-pt_lambda (PARSER_CONTEXT * parser, PT_NODE * tree_with_names, PT_NODE * name_node, PT_NODE * corresponding_tree)
+pt_lambda (PARSER_CONTEXT *parser, PT_NODE *tree_with_names, PT_NODE *name_node, PT_NODE *corresponding_tree)
 {
   return pt_lambda_with_arg (parser, tree_with_names, name_node, corresponding_tree, false, 0, false);
 }
@@ -1188,7 +1188,7 @@ pt_lambda (PARSER_CONTEXT * parser, PT_NODE * tree_with_names, PT_NODE * name_no
  *   id(in):
  */
 UINTPTR
-pt_find_id (PARSER_CONTEXT * parser, PT_NODE * tree_with_names, UINTPTR id)
+pt_find_id (PARSER_CONTEXT *parser, PT_NODE *tree_with_names, UINTPTR id)
 {
   PT_FIND_ID_INFO info;
 
@@ -1207,7 +1207,7 @@ pt_find_id (PARSER_CONTEXT * parser, PT_NODE * tree_with_names, UINTPTR id)
  *   in_tree(in):
  */
 PT_NODE *
-parser_copy_tree (PARSER_CONTEXT * parser, const PT_NODE * tree)
+parser_copy_tree (PARSER_CONTEXT *parser, const PT_NODE *tree)
 {
   PT_NODE *copy = NULL;
 
@@ -1238,7 +1238,7 @@ parser_copy_tree (PARSER_CONTEXT * parser, const PT_NODE * tree)
  *   tree(in):
  */
 PT_NODE *
-parser_copy_tree_list (PARSER_CONTEXT * parser, PT_NODE * tree)
+parser_copy_tree_list (PARSER_CONTEXT *parser, PT_NODE *tree)
 {
   if (tree)
     {
@@ -1260,7 +1260,7 @@ parser_copy_tree_list (PARSER_CONTEXT * parser, PT_NODE * tree)
  *   list2(in): the second tree list
  */
 PT_NODE *
-parser_get_tree_list_diff (PARSER_CONTEXT * parser, PT_NODE * list1, PT_NODE * list2)
+parser_get_tree_list_diff (PARSER_CONTEXT *parser, PT_NODE *list1, PT_NODE *list2)
 {
   PT_NODE *res_list, *save_node1, *save_node2, *node1, *node2;
 
@@ -1314,7 +1314,7 @@ parser_get_tree_list_diff (PARSER_CONTEXT * parser, PT_NODE * list1, PT_NODE * l
  *   in_tree(in):
  */
 PT_NODE *
-pt_point (PARSER_CONTEXT * parser, const PT_NODE * in_tree)
+pt_point (PARSER_CONTEXT *parser, const PT_NODE *in_tree)
 {
   PT_NODE *tree, *pointer;
 
@@ -1353,7 +1353,7 @@ pt_point (PARSER_CONTEXT * parser, const PT_NODE * in_tree)
  */
 
 PT_NODE *
-pt_point_l (PARSER_CONTEXT * parser, const PT_NODE * in_tree)
+pt_point_l (PARSER_CONTEXT *parser, const PT_NODE *in_tree)
 {
   PT_NODE *tree, *node, *pointer, *list;
 
@@ -1399,7 +1399,7 @@ exit_on_error:
  *   node(in): node to point to
  */
 PT_NODE *
-pt_point_ref (PARSER_CONTEXT * parser, const PT_NODE * node)
+pt_point_ref (PARSER_CONTEXT *parser, const PT_NODE *node)
 {
   PT_NODE *ret = pt_point (parser, node);
   if (ret != NULL)
@@ -1419,7 +1419,7 @@ pt_point_ref (PARSER_CONTEXT * parser, const PT_NODE * node)
  *   node(in): node to be pointed to by new stack entry
  */
 PT_NODE *
-pt_pointer_stack_push (PARSER_CONTEXT * parser, PT_NODE * stack, PT_NODE * node)
+pt_pointer_stack_push (PARSER_CONTEXT *parser, PT_NODE *stack, PT_NODE *node)
 {
   PT_NODE *new_top = pt_point (parser, node);
   PT_NODE *list = stack;
@@ -1455,7 +1455,7 @@ pt_pointer_stack_push (PARSER_CONTEXT * parser, PT_NODE * stack, PT_NODE * node)
  *   node(out): popped node
  */
 PT_NODE *
-pt_pointer_stack_pop (PARSER_CONTEXT * parser, PT_NODE * stack, PT_NODE ** node)
+pt_pointer_stack_pop (PARSER_CONTEXT *parser, PT_NODE *stack, PT_NODE **node)
 {
   PT_NODE *new_top = NULL;
   PT_NODE *list = stack;
@@ -1499,7 +1499,7 @@ pt_pointer_stack_pop (PARSER_CONTEXT * parser, PT_NODE * stack, PT_NODE ** node)
  *   continue_walk(in):
  */
 static PT_NODE *
-free_node_in_tree_pre (PARSER_CONTEXT * parser, PT_NODE * node, void *arg, int *continue_walk)
+free_node_in_tree_pre (PARSER_CONTEXT *parser, PT_NODE *node, void *arg, int *continue_walk)
 {
   if (node->node_type == PT_NODE_POINTER)
     {
@@ -1518,7 +1518,7 @@ free_node_in_tree_pre (PARSER_CONTEXT * parser, PT_NODE * node, void *arg, int *
  *   continue_walk(in):
  */
 static PT_NODE *
-free_node_in_tree_post (PARSER_CONTEXT * parser, PT_NODE * node, void *arg, int *continue_walk)
+free_node_in_tree_post (PARSER_CONTEXT *parser, PT_NODE *node, void *arg, int *continue_walk)
 {
   parser_free_node (parser, node);
   return NULL;
@@ -1531,7 +1531,7 @@ free_node_in_tree_post (PARSER_CONTEXT * parser, PT_NODE * node, void *arg, int 
  *   tree(in):
  */
 void
-parser_free_tree (PARSER_CONTEXT * parser, PT_NODE * tree)
+parser_free_tree (PARSER_CONTEXT *parser, PT_NODE *tree)
 {
   (void) parser_walk_tree (parser, tree, free_node_in_tree_pre, NULL, free_node_in_tree_post, NULL);
 }
@@ -1543,14 +1543,14 @@ parser_free_tree (PARSER_CONTEXT * parser, PT_NODE * tree)
  *   tree(in):
  */
 void
-parser_free_subtrees (PARSER_CONTEXT * parser, PT_NODE * tree)
+parser_free_subtrees (PARSER_CONTEXT *parser, PT_NODE *tree)
 {
   (void) parser_walk_leaves (parser, tree, free_node_in_tree_pre, NULL, free_node_in_tree_post, NULL);
 }
 
 // clear node resources and all subtrees
 void
-parser_clear_node (PARSER_CONTEXT * parser, PT_NODE * node)
+parser_clear_node (PARSER_CONTEXT *parser, PT_NODE *node)
 {
   parser_free_subtrees (parser, node);
   parser_free_node_resources (node);
@@ -1566,7 +1566,7 @@ parser_clear_node (PARSER_CONTEXT * parser, PT_NODE * node)
  */
 
 void *
-pt_internal_error (PARSER_CONTEXT * parser, const char *file, int line, const char *what)
+pt_internal_error (PARSER_CONTEXT *parser, const char *file, int line, const char *what)
 {
   PT_NODE node;
 
@@ -1593,7 +1593,7 @@ pt_internal_error (PARSER_CONTEXT * parser, const char *file, int line, const ch
  *   what(in):
  */
 void
-pt_void_internal_error (PARSER_CONTEXT * parser, const char *file, int line, const char *what)
+pt_void_internal_error (PARSER_CONTEXT *parser, const char *file, int line, const char *what)
 {
   pt_internal_error (parser, file, line, what);
 }
@@ -1605,7 +1605,7 @@ pt_void_internal_error (PARSER_CONTEXT * parser, const char *file, int line, con
  *   p(in):
  */
 static int
-fgetin (PARSER_CONTEXT * p)
+fgetin (PARSER_CONTEXT *p)
 {
   int c;
 
@@ -1627,7 +1627,7 @@ fgetin (PARSER_CONTEXT * p)
  *   p(in):
  */
 static int
-buffgetin (PARSER_CONTEXT * p)
+buffgetin (PARSER_CONTEXT *p)
 {
   int c;
 
@@ -1652,7 +1652,7 @@ buffgetin (PARSER_CONTEXT * p)
  *   p(in):
  */
 static int
-binarygetin (PARSER_CONTEXT * p)
+binarygetin (PARSER_CONTEXT *p)
 {
   int c = -1;
 
@@ -1676,7 +1676,7 @@ binarygetin (PARSER_CONTEXT * p)
  *   node(in): a PT_NODE
  */
 int
-pt_push (PARSER_CONTEXT * parser, PT_NODE * node)
+pt_push (PARSER_CONTEXT *parser, PT_NODE *node)
 {
 #define INITIAL_EXTENT 512
 #define DELTA          512
@@ -1723,7 +1723,7 @@ pt_push (PARSER_CONTEXT * parser, PT_NODE * node)
  *   parser(in): the parser context
  */
 PT_NODE *
-pt_pop (PARSER_CONTEXT * parser)
+pt_pop (PARSER_CONTEXT *parser)
 {
   if (!parser || !parser->node_stack)
     {
@@ -1745,7 +1745,7 @@ pt_pop (PARSER_CONTEXT * parser)
  *   parser(in): the parser context
  */
 PT_NODE *
-pt_top (PARSER_CONTEXT * parser)
+pt_top (PARSER_CONTEXT *parser)
 {
   if (!parser || !parser->node_stack)
     {
@@ -1775,7 +1775,7 @@ pt_top (PARSER_CONTEXT * parser)
  *	 query string may contain string constants.
  */
 PT_NODE **
-parser_parse_string_use_sys_charset (PARSER_CONTEXT * parser, const char *buffer)
+parser_parse_string_use_sys_charset (PARSER_CONTEXT *parser, const char *buffer)
 {
   PT_NODE **result = NULL;
 
@@ -1793,7 +1793,7 @@ parser_parse_string_use_sys_charset (PARSER_CONTEXT * parser, const char *buffer
  *   buffer(in):
  */
 PT_NODE **
-parser_parse_string (PARSER_CONTEXT * parser, const char *buffer)
+parser_parse_string (PARSER_CONTEXT *parser, const char *buffer)
 {
   return parser_parse_string_with_escapes (parser, buffer, true);
 }
@@ -1806,7 +1806,7 @@ parser_parse_string (PARSER_CONTEXT * parser, const char *buffer)
  */
 
 PT_NODE **
-parser_parse_string_with_escapes (PARSER_CONTEXT * parser, const char *buffer, const bool strings_have_no_escapes)
+parser_parse_string_with_escapes (PARSER_CONTEXT *parser, const char *buffer, const bool strings_have_no_escapes)
 {
   PT_NODE **tree;
 
@@ -1871,7 +1871,7 @@ parser_parse_string_with_escapes (PARSER_CONTEXT * parser, const char *buffer, c
  */
 
 PT_NODE **
-parser_parse_binary (PARSER_CONTEXT * parser, const char *buffer, size_t size)
+parser_parse_binary (PARSER_CONTEXT *parser, const char *buffer, size_t size)
 {
   PT_NODE **tree;
 
@@ -1917,7 +1917,7 @@ parser_parse_binary (PARSER_CONTEXT * parser, const char *buffer, size_t size)
  */
 
 PT_NODE **
-parser_parse_file (PARSER_CONTEXT * parser, FILE * file)
+parser_parse_file (PARSER_CONTEXT *parser, FILE *file)
 {
   PT_NODE **tree;
 
@@ -1976,7 +1976,7 @@ parser_parse_file (PARSER_CONTEXT * parser, FILE * file)
  *   file(in):
  */
 PT_NODE **
-pt_init_one_statement_parser (PARSER_CONTEXT * parser, FILE * file)
+pt_init_one_statement_parser (PARSER_CONTEXT *parser, FILE *file)
 {
   if (!parser)
     {
@@ -2020,7 +2020,7 @@ pt_init_one_statement_parser (PARSER_CONTEXT * parser, FILE * file)
  *   msg(in): a helpful explanation of the error
  */
 void
-pt_record_error (PARSER_CONTEXT * parser, int stmt_no, int line_no, int col_no, const char *msg, const char *context)
+pt_record_error (PARSER_CONTEXT *parser, int stmt_no, int line_no, int col_no, const char *msg, const char *context)
 {
   char *context_copy;
   char buf[MAX_PRINT_ERROR_CONTEXT_LENGTH + 1];
@@ -2125,7 +2125,7 @@ pt_record_error (PARSER_CONTEXT * parser, int stmt_no, int line_no, int col_no, 
  */
 
 void
-pt_frob_warning (PARSER_CONTEXT * parser, const PT_NODE * stmt, const char *fmt, ...)
+pt_frob_warning (PARSER_CONTEXT *parser, const PT_NODE *stmt, const char *fmt, ...)
 {
   va_list ap;
   char *old_buf = parser->error_buffer;
@@ -2155,7 +2155,7 @@ pt_frob_warning (PARSER_CONTEXT * parser, const PT_NODE * stmt, const char *fmt,
  */
 
 void
-pt_frob_error (PARSER_CONTEXT * parser, const PT_NODE * stmt, const char *fmt, ...)
+pt_frob_error (PARSER_CONTEXT *parser, const PT_NODE *stmt, const char *fmt, ...)
 {
   va_list ap;
   const char *context = NULL;
@@ -2193,7 +2193,7 @@ pt_frob_error (PARSER_CONTEXT * parser, const PT_NODE * stmt, const char *fmt, .
  *   parser(in): parser context used in query compilation
  */
 PT_NODE *
-pt_get_errors (PARSER_CONTEXT * parser)
+pt_get_errors (PARSER_CONTEXT *parser)
 {
   if (parser == NULL)
     {
@@ -2214,7 +2214,7 @@ pt_get_errors (PARSER_CONTEXT * parser)
  *   e_msg(out): an explanation of the error
  */
 PT_NODE *
-pt_get_next_error (PT_NODE * errors, int *stmt_no, int *line_no, int *col_no, const char **msg)
+pt_get_next_error (PT_NODE *errors, int *stmt_no, int *line_no, int *col_no, const char **msg)
 {
   if (!errors || errors->node_type != PT_ZZ_ERROR_MSG)
     {
@@ -2238,7 +2238,7 @@ pt_get_next_error (PT_NODE * errors, int *stmt_no, int *line_no, int *col_no, co
  *   n(in):
  */
 PT_NODE *
-parser_new_node (PARSER_CONTEXT * parser, PT_NODE_TYPE node_type)
+parser_new_node (PARSER_CONTEXT *parser, PT_NODE_TYPE node_type)
 {
   PT_NODE *node;
 
@@ -2259,7 +2259,7 @@ parser_new_node (PARSER_CONTEXT * parser, PT_NODE_TYPE node_type)
  *   node(in/out):
  */
 PT_NODE *
-parser_init_node (PT_NODE * node, PT_NODE_TYPE node_type)
+parser_init_node (PT_NODE *node, PT_NODE_TYPE node_type)
 {
   assert (node != NULL);
   assert (node_type < PT_LAST_NODE_NUMBER);
@@ -2285,7 +2285,7 @@ parser_init_node (PT_NODE * node, PT_NODE_TYPE node_type)
  *   node(in/out):
  */
 PT_NODE *
-parser_reinit_node (PT_NODE * node)
+parser_reinit_node (PT_NODE *node)
 {
   if (node)
     {
@@ -2329,7 +2329,7 @@ parser_reinit_node (PT_NODE * node)
  *   node(in):
  */
 PARSER_VARCHAR *
-pt_print_bytes_alias (PARSER_CONTEXT * parser, const PT_NODE * node)
+pt_print_bytes_alias (PARSER_CONTEXT *parser, const PT_NODE *node)
 {
   if (!node)
     {
@@ -2353,7 +2353,7 @@ pt_print_bytes_alias (PARSER_CONTEXT * parser, const PT_NODE * node)
  *   node(in):
  */
 PARSER_VARCHAR *
-pt_print_bytes (PARSER_CONTEXT * parser, const PT_NODE * node)
+pt_print_bytes (PARSER_CONTEXT *parser, const PT_NODE *node)
 {
   PT_NODE_TYPE t;
   PARSER_PRINT_NODE_FUNC f;
@@ -2399,7 +2399,7 @@ pt_print_bytes (PARSER_CONTEXT * parser, const PT_NODE * node)
  *   p(in):
  */
 PARSER_VARCHAR *
-pt_print_bytes_l (PARSER_CONTEXT * parser, const PT_NODE * p)
+pt_print_bytes_l (PARSER_CONTEXT *parser, const PT_NODE *p)
 {
   PARSER_VARCHAR *q = 0, *r, *prev;
   PT_STRING_BLOCK sb;
@@ -2470,7 +2470,7 @@ pt_print_bytes_l (PARSER_CONTEXT * parser, const PT_NODE * p)
  *   p(in):
  */
 PARSER_VARCHAR *
-pt_print_bytes_spec_list (PARSER_CONTEXT * parser, const PT_NODE * p)
+pt_print_bytes_spec_list (PARSER_CONTEXT *parser, const PT_NODE *p)
 {
   PARSER_VARCHAR *q = 0, *r;
 
@@ -2523,7 +2523,7 @@ pt_print_bytes_spec_list (PARSER_CONTEXT * parser, const PT_NODE * p)
  *   val(in):
  */
 PARSER_VARCHAR *
-pt_print_node_value (PARSER_CONTEXT * parser, const PT_NODE * val)
+pt_print_node_value (PARSER_CONTEXT *parser, const PT_NODE *val)
 {
   PARSER_VARCHAR *q = NULL;
   DB_VALUE *db_val, new_db_val;
@@ -2592,7 +2592,7 @@ pt_print_node_value (PARSER_CONTEXT * parser, const PT_NODE * val)
  *   val(in):
  */
 PARSER_VARCHAR *
-pt_print_db_value (PARSER_CONTEXT * parser, const struct db_value * val)
+pt_print_db_value (PARSER_CONTEXT *parser, const struct db_value *val)
 {
   PARSER_VARCHAR *temp = NULL, *result = NULL;
   int i, size = 0;
@@ -2693,7 +2693,7 @@ pt_print_db_value (PARSER_CONTEXT * parser, const struct db_value * val)
  *   node(in):
  */
 char *
-pt_print_alias (PARSER_CONTEXT * parser, const PT_NODE * node)
+pt_print_alias (PARSER_CONTEXT *parser, const PT_NODE *node)
 {
   PARSER_VARCHAR *string;
 
@@ -2707,7 +2707,7 @@ pt_print_alias (PARSER_CONTEXT * parser, const PT_NODE * node)
 
 
 static PARSER_VARCHAR *
-pt_conv_server_2_hash_text (PARSER_CONTEXT * parser)
+pt_conv_server_2_hash_text (PARSER_CONTEXT *parser)
 {
   unsigned int hash1 = 5381;
   unsigned int hash2 = 5381;
@@ -2747,7 +2747,7 @@ pt_conv_server_2_hash_text (PARSER_CONTEXT * parser)
  *   node(in):
  */
 char *
-parser_print_tree (PARSER_CONTEXT * parser, const PT_NODE * node)
+parser_print_tree (PARSER_CONTEXT *parser, const PT_NODE *node)
 {
 #define PT_QUERY_STRING_USER_TEXT ( \
   5	  /* user= */ \
@@ -2846,7 +2846,7 @@ parser_print_user (char *user_text, int len)
  *   node(in):
  */
 char *
-parser_print_tree_with_quotes (PARSER_CONTEXT * parser, const PT_NODE * node)
+parser_print_tree_with_quotes (PARSER_CONTEXT *parser, const PT_NODE *node)
 {
   PARSER_VARCHAR *string;
   unsigned int save_custom;
@@ -2877,7 +2877,7 @@ parser_print_tree_with_quotes (PARSER_CONTEXT * parser, const PT_NODE * node)
  *	  the function based index
  */
 char *
-parser_print_function_index_expr (PARSER_CONTEXT * parser, const PT_NODE * expr)
+parser_print_function_index_expr (PARSER_CONTEXT *parser, const PT_NODE *expr)
 {
   unsigned int save_custom = parser->custom_print;
   char *result;
@@ -2898,7 +2898,7 @@ parser_print_function_index_expr (PARSER_CONTEXT * parser, const PT_NODE * expr)
  *   node(in):
  */
 char *
-parser_print_tree_list (PARSER_CONTEXT * parser, const PT_NODE * node)
+parser_print_tree_list (PARSER_CONTEXT *parser, const PT_NODE *node)
 {
   PARSER_VARCHAR *string;
 
@@ -2917,7 +2917,7 @@ parser_print_tree_list (PARSER_CONTEXT * parser, const PT_NODE * node)
  *   p(in):
  */
 PARSER_VARCHAR *
-pt_print_and_list (PARSER_CONTEXT * parser, const PT_NODE * p)
+pt_print_and_list (PARSER_CONTEXT *parser, const PT_NODE *p)
 {
   PARSER_VARCHAR *q = NULL, *r1;
   const PT_NODE *n;
@@ -2963,7 +2963,7 @@ pt_print_and_list (PARSER_CONTEXT * parser, const PT_NODE * p)
  *   node(in):
  */
 char *
-pt_print_query_spec_no_list (PARSER_CONTEXT * parser, const PT_NODE * node)
+pt_print_query_spec_no_list (PARSER_CONTEXT *parser, const PT_NODE *node)
 {
   unsigned int save_custom = parser->custom_print;
   char *result;
@@ -2982,7 +2982,7 @@ pt_print_query_spec_no_list (PARSER_CONTEXT * parser, const PT_NODE * node)
  *   node(in):
  */
 char *
-pt_short_print (PARSER_CONTEXT * parser, const PT_NODE * node)
+pt_short_print (PARSER_CONTEXT *parser, const PT_NODE *node)
 {
   char *str;
   const int max_print_len = 64;
@@ -3012,7 +3012,7 @@ end:
  *   node(in):
  */
 char *
-pt_short_print_l (PARSER_CONTEXT * parser, const PT_NODE * node)
+pt_short_print_l (PARSER_CONTEXT *parser, const PT_NODE *node)
 {
   char *str;
   const int max_print_len = 64;
@@ -3041,7 +3041,7 @@ end:
  *   node(in):
  */
 const char *
-pt_show_node_type (PT_NODE * node)
+pt_show_node_type (PT_NODE *node)
 {
   if (!node)
     {
@@ -3231,7 +3231,7 @@ pt_show_node_type (PT_NODE * node)
  *   list(in):
  */
 PT_NODE *
-parser_append_node (PT_NODE * node, PT_NODE * list)
+parser_append_node (PT_NODE *node, PT_NODE *list)
 {
   if (list)
     {
@@ -3257,7 +3257,7 @@ parser_append_node (PT_NODE * node, PT_NODE * list)
  *   list(in):
  */
 PT_NODE *
-parser_append_previous_node (PT_NODE * node, PT_NODE * list)
+parser_append_previous_node (PT_NODE *node, PT_NODE *list)
 {
   if (list)
     {
@@ -3278,7 +3278,7 @@ parser_append_previous_node (PT_NODE * node, PT_NODE * list)
  *   list(in):
  */
 PT_NODE *
-parser_append_node_or (PT_NODE * node, PT_NODE * list)
+parser_append_node_or (PT_NODE *node, PT_NODE *list)
 {
   if (list)
     {
@@ -3303,7 +3303,7 @@ parser_append_node_or (PT_NODE * node, PT_NODE * list)
  *   list(in):
  */
 int
-pt_length_of_list (const PT_NODE * list)
+pt_length_of_list (const PT_NODE *list)
 {
   int len;
   for (len = 0; list; len++)
@@ -3320,7 +3320,7 @@ pt_length_of_list (const PT_NODE * list)
  *   hidden_col(in):
  */
 int
-pt_length_of_select_list (PT_NODE * list, int hidden_col)
+pt_length_of_select_list (PT_NODE *list, int hidden_col)
 {
   int len;
 
@@ -3354,7 +3354,7 @@ pt_length_of_select_list (PT_NODE * list, int hidden_col)
  *  index(in): index of requested node
  */
 PT_NODE *
-pt_get_node_from_list (PT_NODE * list, int index)
+pt_get_node_from_list (PT_NODE *list, int index)
 {
   if (list == NULL || index < 0)
     {
@@ -4343,7 +4343,7 @@ pt_show_partition_type (PT_PARTITION_TYPE t)
  */
 
 PT_NODE *
-pt_gather_constraints (PARSER_CONTEXT * parser, PT_NODE * node)
+pt_gather_constraints (PARSER_CONTEXT *parser, PT_NODE *node)
 {
   PT_NODE **constraint_list_p = NULL;
   PT_NODE **create_index_list_p = NULL;
@@ -4451,7 +4451,7 @@ error:
  *   node(in):
  */
 PT_NODE *
-pt_get_subquery_list (PT_NODE * node)
+pt_get_subquery_list (PT_NODE *node)
 {
   PT_NODE *col, *list;
 
@@ -4510,7 +4510,7 @@ pt_get_subquery_list (PT_NODE * node)
  *   node(in):
  */
 int
-pt_get_expression_count (PT_NODE * node)
+pt_get_expression_count (PT_NODE *node)
 {
   int count;
   PT_NODE *list;
@@ -4573,7 +4573,7 @@ pt_get_expression_count (PT_NODE * node)
  *   do_one(in):
  */
 void
-pt_select_list_to_one_col (PARSER_CONTEXT * parser, PT_NODE * node, bool do_one)
+pt_select_list_to_one_col (PARSER_CONTEXT *parser, PT_NODE *node, bool do_one)
 {
   PT_NODE *val, *col, *list, *next;
   bool do_rewrite;
@@ -4732,7 +4732,7 @@ pt_select_list_to_one_col (PARSER_CONTEXT * parser, PT_NODE * node, bool do_one)
  *   arg2(in):
  */
 int
-pt_check_set_count_set (PARSER_CONTEXT * parser, PT_NODE * arg1, PT_NODE * arg2)
+pt_check_set_count_set (PARSER_CONTEXT *parser, PT_NODE *arg1, PT_NODE *arg2)
 {
   PT_NODE *e1, *e2;
   bool e1_is_expr_set, e2_is_expr_set;
@@ -4814,7 +4814,7 @@ pt_check_set_count_set (PARSER_CONTEXT * parser, PT_NODE * arg1, PT_NODE * arg2)
  *   exp(in):
  */
 PT_NODE *
-pt_rewrite_set_eq_set (PARSER_CONTEXT * parser, PT_NODE * exp)
+pt_rewrite_set_eq_set (PARSER_CONTEXT *parser, PT_NODE *exp)
 {
   PT_NODE *p = NULL, *rhs = NULL;
   PT_NODE *arg1, *arg2, *e1, *e2, *e1_next, *e2_next, *lhs, *tmp;
@@ -5409,7 +5409,7 @@ pt_init_print_f (void)
  *   node_type(in) : node type
  */
 void
-pt_init_node (PT_NODE * node, PT_NODE_TYPE node_type)
+pt_init_node (PT_NODE *node, PT_NODE_TYPE node_type)
 {
   /* There is only one path where this function is called.
    * Also, node_type is fixed to PT_DOT_.      
@@ -5439,7 +5439,7 @@ pt_init_node (PT_NODE * node, PT_NODE_TYPE node_type)
  *   name(in):
  */
 PARSER_VARCHAR *
-pt_append_name (const PARSER_CONTEXT * parser, PARSER_VARCHAR * string, const char *name)
+pt_append_name (const PARSER_CONTEXT *parser, PARSER_VARCHAR *string, const char *name)
 {
   if ((!(parser->custom_print & (PT_SUPPRESS_QUOTES | PT_PRINT_SUPPRESS_FOR_DBLINK))
        && (pt_is_keyword (name) || lang_check_identifier (name, strlen (name)) != true))
@@ -5484,7 +5484,7 @@ pt_append_name (const PARSER_CONTEXT * parser, PARSER_VARCHAR * string, const ch
  *
  */
 static PARSER_VARCHAR *
-pt_append_quoted_string (const PARSER_CONTEXT * parser, PARSER_VARCHAR * buf, const char *str, size_t str_length)
+pt_append_quoted_string (const PARSER_CONTEXT *parser, PARSER_VARCHAR *buf, const char *str, size_t str_length)
 {
   size_t i;
   size_t out_length;
@@ -5524,7 +5524,7 @@ pt_append_quoted_string (const PARSER_CONTEXT * parser, PARSER_VARCHAR * buf, co
  *   value(in):
  */
 static PARSER_VARCHAR *
-pt_append_string_prefix (const PARSER_CONTEXT * parser, PARSER_VARCHAR * buf, const PT_NODE * value)
+pt_append_string_prefix (const PARSER_CONTEXT *parser, PARSER_VARCHAR *buf, const PT_NODE *value)
 {
   char prefix[2];
   if (value->info.value.string_type != ' ')
@@ -5663,7 +5663,7 @@ pt_show_event_type (PT_EVENT_TYPE p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_alter (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_alter (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.alter.entity_name, arg);
   PT_APPLY_WALK (parser, p->info.alter.super.sup_class_list, arg);
@@ -5747,7 +5747,7 @@ pt_apply_alter (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  */
 
 static PARSER_VARCHAR *
-pt_print_alter_one_clause (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_alter_one_clause (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *q = NULL, *r1 = NULL, *r2 = NULL;
   PT_NODE *names = NULL, *defaults = NULL, *attrs = NULL;
@@ -6343,7 +6343,7 @@ pt_print_alter_one_clause (PARSER_CONTEXT * parser, PT_NODE * p)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_alter (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_alter (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *q = NULL, *r1 = NULL;
   PT_NODE *crt_clause = NULL;
@@ -6386,7 +6386,7 @@ pt_print_alter (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_alter_index (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_alter_index (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.index.indexed_class, arg);
   PT_APPLY_WALK (parser, p->info.index.column_names, arg);
@@ -6403,7 +6403,7 @@ pt_apply_alter_index (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_alter_index (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_alter_index (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *b = 0, *r1, *comment;
   unsigned int saved_cp = parser->custom_print;
@@ -6484,7 +6484,7 @@ pt_print_alter_index (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_alter_user (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_alter_user (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.alter_user.user_name, arg);
   PT_APPLY_WALK (parser, p->info.alter_user.password, arg);
@@ -6499,7 +6499,7 @@ pt_apply_alter_user (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_alter_user (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_alter_user (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *b = 0, *r1;
 
@@ -6554,7 +6554,7 @@ pt_print_alter_user (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_alter_trigger (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_alter_trigger (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.alter_trigger.trigger_spec_list, arg);
   PT_APPLY_WALK (parser, p->info.alter_trigger.trigger_priority, arg);
@@ -6567,7 +6567,7 @@ pt_apply_alter_trigger (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PT_NODE *
-pt_init_alter_trigger (PT_NODE * p)
+pt_init_alter_trigger (PT_NODE *p)
 {
   p->info.alter_trigger.trigger_status = PT_MISC_DUMMY;
   return (p);
@@ -6580,7 +6580,7 @@ pt_init_alter_trigger (PT_NODE * p)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_alter_trigger (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_alter_trigger (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *b = NULL, *r1;
 
@@ -6626,7 +6626,7 @@ pt_print_alter_trigger (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_attach (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_attach (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   return p;
 }
@@ -6638,7 +6638,7 @@ pt_apply_attach (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_attach (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_attach (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   char s[PT_MEMB_BUF_SIZE];
 
@@ -6657,7 +6657,7 @@ pt_print_attach (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_attr_def (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_attr_def (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.attr_def.attr_name, arg);
   PT_APPLY_WALK (parser, p->info.attr_def.data_default, arg);
@@ -6672,7 +6672,7 @@ pt_apply_attr_def (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PT_NODE *
-pt_init_attr_def (PT_NODE * p)
+pt_init_attr_def (PT_NODE *p)
 {
   p->info.attr_def.attr_type = PT_NORMAL;
   return p;
@@ -6685,7 +6685,7 @@ pt_init_attr_def (PT_NODE * p)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_attr_def (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_attr_def (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *q = 0, *r1;
   char s[PT_MEMB_BUF_SIZE];
@@ -6885,7 +6885,7 @@ pt_print_attr_def (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_attr_ordering (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_attr_ordering (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.attr_ordering.after, arg);
   return p;
@@ -6898,7 +6898,7 @@ pt_apply_attr_ordering (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_attr_ordering (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_attr_ordering (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *q = NULL, *r1 = NULL;
 
@@ -6926,7 +6926,7 @@ pt_print_attr_ordering (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_auth_cmd (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_auth_cmd (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.auth_cmd.attr_mthd_list, arg);
   return p;
@@ -6938,7 +6938,7 @@ pt_apply_auth_cmd (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PT_NODE *
-pt_init_auth_cmd (PT_NODE * p)
+pt_init_auth_cmd (PT_NODE *p)
 {
   p->info.auth_cmd.auth_cmd = PT_NO_PRIV;
   return (p);
@@ -6951,7 +6951,7 @@ pt_init_auth_cmd (PT_NODE * p)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_auth_cmd (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_auth_cmd (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *q = 0, *r1;
   q = pt_append_nulstring (parser, q, pt_show_priv (p->info.auth_cmd.auth_cmd));
@@ -6976,7 +6976,7 @@ pt_print_auth_cmd (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_check_option (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_check_option (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.check_option.expr, arg);
 
@@ -6990,7 +6990,7 @@ pt_apply_check_option (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_check_option (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_check_option (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *q = NULL;
 
@@ -7009,7 +7009,7 @@ pt_print_check_option (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_commit_work (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_commit_work (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   return p;
 }
@@ -7021,7 +7021,7 @@ pt_apply_commit_work (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_commit_work (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_commit_work (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *q = NULL;
 
@@ -7044,7 +7044,7 @@ pt_print_commit_work (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_create_entity (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_create_entity (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.create_entity.entity_name, arg);
   PT_APPLY_WALK (parser, p->info.create_entity.supclass_list, arg);
@@ -7071,7 +7071,7 @@ pt_apply_create_entity (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PT_NODE *
-pt_init_create_entity (PT_NODE * p)
+pt_init_create_entity (PT_NODE *p)
 {
   p->info.create_entity.entity_type = (PT_MISC_TYPE) 0;
   p->info.create_entity.create_select_action = PT_CREATE_SELECT_NO_ACTION;
@@ -7085,7 +7085,7 @@ pt_init_create_entity (PT_NODE * p)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_create_entity (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_create_entity (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *q = 0, *r1;
   unsigned int save_custom;
@@ -7336,7 +7336,7 @@ pt_print_create_entity (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_create_index (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_create_index (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.index.indexed_class, arg);
   PT_APPLY_WALK (parser, p->info.index.column_names, arg);
@@ -7353,7 +7353,7 @@ pt_apply_create_index (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PT_NODE *
-pt_init_create_index (PT_NODE * p)
+pt_init_create_index (PT_NODE *p)
 {
   p->info.index.func_pos = -1;
   return p;
@@ -7366,7 +7366,7 @@ pt_init_create_index (PT_NODE * p)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_create_index (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_create_index (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *b = 0, *r1 = 0, *r2 = 0, *r3 = 0, *r4 = 0;
   unsigned int saved_cp = parser->custom_print;
@@ -7503,7 +7503,7 @@ pt_print_create_index (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_create_user (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_create_user (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.create_user.user_name, arg);
   PT_APPLY_WALK (parser, p->info.create_user.password, arg);
@@ -7519,7 +7519,7 @@ pt_apply_create_user (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_create_user (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_create_user (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *b = 0, *r1;
 
@@ -7564,7 +7564,7 @@ pt_print_create_user (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_create_trigger (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_create_trigger (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.create_trigger.trigger_name, arg);
   PT_APPLY_WALK (parser, p->info.create_trigger.trigger_priority, arg);
@@ -7582,7 +7582,7 @@ pt_apply_create_trigger (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_create_trigger (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_create_trigger (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *q = NULL, *r1;
   r1 = pt_print_bytes (parser, p->info.create_trigger.trigger_name);
@@ -7648,7 +7648,7 @@ pt_print_create_trigger (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_create_stored_procedure (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_create_stored_procedure (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.sp.name, arg);
   PT_APPLY_WALK (parser, p->info.sp.param_list, arg);
@@ -7665,7 +7665,7 @@ pt_apply_create_stored_procedure (PARSER_CONTEXT * parser, PT_NODE * p, void *ar
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_stored_procedure (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_stored_procedure (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.sp.name, arg);
   return p;
@@ -7678,7 +7678,7 @@ pt_apply_stored_procedure (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_create_stored_procedure (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_create_stored_procedure (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *q = NULL, *r1, *r2, *r3;
 
@@ -7759,7 +7759,7 @@ pt_print_create_stored_procedure (PARSER_CONTEXT * parser, PT_NODE * p)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_drop_stored_procedure (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_drop_stored_procedure (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *q = NULL, *r1;
 
@@ -7782,7 +7782,7 @@ pt_print_drop_stored_procedure (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_prepare (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_prepare (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   return p;
 }
@@ -7797,7 +7797,7 @@ pt_apply_prepare (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_truncate (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_truncate (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.truncate.spec, arg);
   return p;
@@ -7810,7 +7810,7 @@ pt_apply_truncate (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_truncate (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_truncate (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *q = 0, *r1;
   unsigned int save_custom = parser->custom_print;
@@ -7840,7 +7840,7 @@ pt_print_truncate (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_table_option (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_table_option (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.table_option.val, arg);
   return p;
@@ -7852,7 +7852,7 @@ pt_apply_table_option (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PT_NODE *
-pt_init_table_option (PT_NODE * p)
+pt_init_table_option (PT_NODE *p)
 {
   p->info.table_option.option = PT_TABLE_OPTION_NONE;
   return p;
@@ -7865,7 +7865,7 @@ pt_init_table_option (PT_NODE * p)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_table_option (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_table_option (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *q = NULL, *r1 = NULL;
   const char *tde_algo_name;
@@ -7892,6 +7892,9 @@ pt_print_table_option (PARSER_CONTEXT * parser, PT_NODE * p)
       break;
     case PT_TABLE_OPTION_ENCRYPT:
       q = pt_append_nulstring (parser, q, "encrypt = ");
+      break;
+    case PT_TABLE_OPTION_REPLICATION:
+      q = pt_append_nulstring (parser, q, "replication = ");
       break;
     default:
       break;
@@ -7940,7 +7943,7 @@ pt_print_table_option (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_do (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_do (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.do_.expr, arg);
   return p;
@@ -7953,7 +7956,7 @@ pt_apply_do (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_do (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_do (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *q = 0, *r1;
   unsigned int save_custom = parser->custom_print;
@@ -7977,7 +7980,7 @@ pt_print_do (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_sp_parameter (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_sp_parameter (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   return p;
 }
@@ -7989,7 +7992,7 @@ pt_apply_sp_parameter (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_sp_parameter (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_sp_parameter (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *q = NULL, *r1;
 
@@ -8035,7 +8038,7 @@ pt_print_sp_parameter (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_sp_body (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_sp_body (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   return p;
 }
@@ -8047,7 +8050,7 @@ pt_apply_sp_body (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_sp_body (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_sp_body (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *q = NULL, *r1 = NULL;
   q = pt_append_nulstring (parser, q, parser->flag.is_parsing_unload_schema ? " AS\n" : " as ");
@@ -8110,7 +8113,7 @@ pt_print_sp_body (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_partition (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_partition (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.partition.expr, arg);
   if (p->info.partition.type == PT_PARTITION_HASH)
@@ -8132,7 +8135,7 @@ pt_apply_partition (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_partition (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_partition (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   char buf[PT_MEMB_BUF_SIZE];
   PARSER_VARCHAR *q = NULL, *r1, *r2;
@@ -8175,7 +8178,7 @@ pt_print_partition (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_parts (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_parts (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.parts.name, arg);
   PT_APPLY_WALK (parser, p->info.parts.values, arg);
@@ -8190,7 +8193,7 @@ pt_apply_parts (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_parts (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_parts (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *q = NULL, *r1, *r2;
   PARSER_VARCHAR *comment = NULL;
@@ -8245,7 +8248,7 @@ pt_print_parts (PARSER_CONTEXT * parser, PT_NODE * p)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_create_serial (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_create_serial (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *q = NULL, *r1;
 
@@ -8326,7 +8329,7 @@ pt_print_create_serial (PARSER_CONTEXT * parser, PT_NODE * p)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_alter_serial (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_alter_serial (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *q = NULL, *r1;
 
@@ -8432,7 +8435,7 @@ pt_print_alter_serial (PARSER_CONTEXT * parser, PT_NODE * p)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_alter_stored_procedure (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_alter_stored_procedure (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *q = NULL, *r1;
   PT_STORED_PROC_INFO *sp_info;
@@ -8485,7 +8488,7 @@ pt_print_alter_stored_procedure (PARSER_CONTEXT * parser, PT_NODE * p)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_drop_serial (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_drop_serial (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *q = NULL, *r1;
 
@@ -8509,7 +8512,7 @@ pt_print_drop_serial (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_create_serial (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_create_serial (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.serial.serial_name, arg);
   PT_APPLY_WALK (parser, p->info.serial.start_val, arg);
@@ -8528,7 +8531,7 @@ pt_apply_create_serial (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_alter_serial (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_alter_serial (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.serial.serial_name, arg);
   PT_APPLY_WALK (parser, p->info.serial.increment_val, arg);
@@ -8547,7 +8550,7 @@ pt_apply_alter_serial (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_drop_serial (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_drop_serial (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.serial.serial_name, arg);
   return p;
@@ -8563,7 +8566,7 @@ pt_apply_drop_serial (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_data_default (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_data_default (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.data_default.default_value, arg);
   return p;
@@ -8575,7 +8578,7 @@ pt_apply_data_default (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PT_NODE *
-pt_init_data_default (PT_NODE * p)
+pt_init_data_default (PT_NODE *p)
 {
   p->info.data_default.default_value = (PT_NODE *) 0;
   p->info.data_default.shared = (PT_MISC_TYPE) 0;
@@ -8590,7 +8593,7 @@ pt_init_data_default (PT_NODE * p)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_data_default (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_data_default (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *q = 0, *r1;
 
@@ -8628,7 +8631,7 @@ pt_print_data_default (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_datatype (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_datatype (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.data_type.entity, arg);
   PT_APPLY_WALK (parser, p->info.data_type.table_column, arg);
@@ -8642,7 +8645,7 @@ pt_apply_datatype (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PT_NODE *
-pt_init_datatype (PT_NODE * p)
+pt_init_datatype (PT_NODE *p)
 {
   p->info.data_type.units = (int) LANG_COERCIBLE_CODESET;
   p->info.data_type.collation_id = LANG_COERCIBLE_COLL;
@@ -8657,7 +8660,7 @@ pt_init_datatype (PT_NODE * p)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_datatype (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_datatype (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *q = NULL;
   PARSER_VARCHAR *r1 = NULL;
@@ -8831,7 +8834,7 @@ pt_print_datatype (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_delete (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_delete (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.delete_.with, arg);
   PT_APPLY_WALK (parser, p->info.delete_.target_classes, arg);
@@ -8858,7 +8861,7 @@ pt_apply_delete (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PT_NODE *
-pt_init_delete (PT_NODE * p)
+pt_init_delete (PT_NODE *p)
 {
   p->info.delete_.hint = PT_HINT_NONE;
   return p;
@@ -8871,7 +8874,7 @@ pt_init_delete (PT_NODE * p)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_delete (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_delete (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *q = 0, *r1, *r2;
 
@@ -9123,7 +9126,7 @@ pt_print_delete (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_difference (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_difference (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.query.with, arg);
   PT_APPLY_WALK (parser, p->info.query.q.union_.arg1, arg);
@@ -9140,7 +9143,7 @@ pt_apply_difference (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PT_NODE *
-pt_init_difference (PT_NODE * p)
+pt_init_difference (PT_NODE *p)
 {
   p->info.query.all_distinct = PT_ALL;
   p->info.query.hint = PT_HINT_NONE;
@@ -9155,7 +9158,7 @@ pt_init_difference (PT_NODE * p)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_difference (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_difference (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *q = NULL, *r1;
 
@@ -9212,7 +9215,7 @@ pt_print_difference (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_dot (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_dot (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.dot.arg1, arg);
   PT_APPLY_WALK (parser, p->info.dot.arg2, arg);
@@ -9227,7 +9230,7 @@ pt_apply_dot (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_dot (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_dot (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *b = 0, *r1, *r2;
 
@@ -9261,7 +9264,7 @@ pt_print_dot (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_drop (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_drop (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.drop.spec_list, arg);
   PT_APPLY_WALK (parser, p->info.drop.internal_stmts, arg);
@@ -9275,7 +9278,7 @@ pt_apply_drop (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_drop (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_drop (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *q = 0, *r1;
   unsigned int save_custom = parser->custom_print;
@@ -9308,7 +9311,7 @@ pt_print_drop (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_drop_index (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_drop_index (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.index.indexed_class, arg);
   PT_APPLY_WALK (parser, p->info.index.column_names, arg);
@@ -9325,7 +9328,7 @@ pt_apply_drop_index (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_drop_index (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_drop_index (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *b = 0, *r1, *r2, *r3;
   const char *index_name = NULL;
@@ -9385,7 +9388,7 @@ pt_print_drop_index (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_drop_user (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_drop_user (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.drop_user.user_name, arg);
   return p;
@@ -9398,7 +9401,7 @@ pt_apply_drop_user (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_drop_user (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_drop_user (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *b = 0, *r1;
 
@@ -9419,7 +9422,7 @@ pt_print_drop_user (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_drop_trigger (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_drop_trigger (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.drop_trigger.trigger_spec_list, arg);
   return p;
@@ -9432,7 +9435,7 @@ pt_apply_drop_trigger (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_drop_trigger (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_drop_trigger (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *b = NULL, *r1;
 
@@ -9453,7 +9456,7 @@ pt_print_drop_trigger (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_drop_variable (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_drop_variable (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.drop_variable.var_names, arg);
   return p;
@@ -9466,7 +9469,7 @@ pt_apply_drop_variable (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_drop_variable (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_drop_variable (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *b = 0, *r1;
 
@@ -9487,7 +9490,7 @@ pt_print_drop_variable (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_spec (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_spec (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.spec.entity_name, arg);
   PT_APPLY_WALK (parser, p->info.spec.remote_server_name, arg);
@@ -9515,7 +9518,7 @@ pt_apply_spec (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PT_NODE *
-pt_init_spec (PT_NODE * p)
+pt_init_spec (PT_NODE *p)
 {
   p->info.spec.only_all = PT_ONLY;
   p->info.spec.location = -1;
@@ -9531,7 +9534,7 @@ pt_init_spec (PT_NODE * p)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_spec (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_spec (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *q = 0, *r1;
   unsigned int save_custom;
@@ -9794,7 +9797,7 @@ pt_print_spec (PARSER_CONTEXT * parser, PT_NODE * p)
  *   p(in):
  */
 PARSER_VARCHAR *
-pt_print_class_name (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_class_name (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *q = 0, *r1;
 
@@ -9828,7 +9831,7 @@ pt_print_class_name (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_evaluate (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_evaluate (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.evaluate.expression, arg);
   PT_APPLY_WALK (parser, p->info.evaluate.into_var, arg);
@@ -9842,7 +9845,7 @@ pt_apply_evaluate (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_evaluate (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_evaluate (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *b = NULL, *r1;
 
@@ -9869,7 +9872,7 @@ pt_print_evaluate (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_event_object (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_event_object (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.event_object.event_object, arg);
   PT_APPLY_WALK (parser, p->info.event_object.correlation_name, arg);
@@ -9883,7 +9886,7 @@ pt_apply_event_object (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_event_object (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_event_object (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *b = NULL;
   return b;
@@ -9899,7 +9902,7 @@ pt_print_event_object (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_event_spec (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_event_spec (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.event_spec.event_target, arg);
   return p;
@@ -9912,7 +9915,7 @@ pt_apply_event_spec (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_event_spec (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_event_spec (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *b = NULL, *r1;
 
@@ -9936,7 +9939,7 @@ pt_print_event_spec (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_event_target (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_event_target (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.event_target.class_name, arg);
   PT_APPLY_WALK (parser, p->info.event_target.attribute, arg);
@@ -9950,7 +9953,7 @@ pt_apply_event_target (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_event_target (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_event_target (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *b = NULL, *r1;
 
@@ -9978,7 +9981,7 @@ pt_print_event_target (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_execute_trigger (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_execute_trigger (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.execute_trigger.trigger_spec_list, arg);
   return p;
@@ -9991,7 +9994,7 @@ pt_apply_execute_trigger (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_execute_trigger (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_execute_trigger (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *b = NULL, *r1;
 
@@ -10012,7 +10015,7 @@ pt_print_execute_trigger (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_expr (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_expr (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.expr.arg1, arg);
   PT_APPLY_WALK (parser, p->info.expr.arg2, arg);
@@ -10031,7 +10034,7 @@ pt_apply_expr (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PT_NODE *
-pt_init_expr (PT_NODE * p)
+pt_init_expr (PT_NODE *p)
 {
   p->info.expr.recursive_type = PT_TYPE_NONE;
 
@@ -10039,7 +10042,7 @@ pt_init_expr (PT_NODE * p)
 }
 
 static void
-pt_print_range_op (PARSER_CONTEXT * parser, PT_STRING_BLOCK * sb, PT_NODE * t, PARSER_VARCHAR * lhs)
+pt_print_range_op (PARSER_CONTEXT *parser, PT_STRING_BLOCK *sb, PT_NODE *t, PARSER_VARCHAR *lhs)
 {
   const char *op1 = NULL, *op2 = NULL;
   PARSER_VARCHAR *rhs1 = NULL, *rhs2 = NULL;
@@ -10112,7 +10115,7 @@ pt_print_range_op (PARSER_CONTEXT * parser, PT_STRING_BLOCK * sb, PT_NODE * t, P
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_expr (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_expr (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *q = 0, *r1, *r2, *r3, *r4;
   PT_NODE *t, *or_next;
@@ -12445,7 +12448,7 @@ pt_print_expr (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_file_path (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_file_path (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   return p;
 }
@@ -12458,7 +12461,7 @@ pt_apply_file_path (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_file_path (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_file_path (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *q = 0, *r1;
 
@@ -12480,7 +12483,7 @@ pt_print_file_path (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_function (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_function (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.function.arg_list, arg);
   PT_APPLY_WALK (parser, p->info.function.order_by, arg);
@@ -12502,7 +12505,7 @@ pt_apply_function (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PT_NODE *
-pt_init_function (PT_NODE * p)
+pt_init_function (PT_NODE *p)
 {
   p->info.function.function_type = (FUNC_CODE) 0;
   p->info.function.all_or_distinct = (PT_MISC_TYPE) 0;
@@ -12517,7 +12520,7 @@ pt_init_function (PT_NODE * p)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_function (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_function (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   FUNC_CODE code;
   PARSER_VARCHAR *q = 0, *r1;
@@ -12777,7 +12780,7 @@ pt_print_function (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_get_opt_lvl (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_get_opt_lvl (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.get_opt_lvl.args, arg);
   PT_APPLY_WALK (parser, p->info.get_opt_lvl.into_var, arg);
@@ -12790,7 +12793,7 @@ pt_apply_get_opt_lvl (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PT_NODE *
-pt_init_get_opt_lvl (PT_NODE * p)
+pt_init_get_opt_lvl (PT_NODE *p)
 {
   p->info.get_opt_lvl.option = PT_OPT_LVL;
   return p;
@@ -12803,7 +12806,7 @@ pt_init_get_opt_lvl (PT_NODE * p)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_get_opt_lvl (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_get_opt_lvl (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *b = NULL, *r1;
   PT_MISC_TYPE option;
@@ -12837,7 +12840,7 @@ pt_print_get_opt_lvl (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_get_trigger (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_get_trigger (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.get_trigger.into_var, arg);
   return p;
@@ -12850,7 +12853,7 @@ pt_apply_get_trigger (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_get_trigger (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_get_trigger (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *b = NULL, *r1;
 
@@ -12876,7 +12879,7 @@ pt_print_get_trigger (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_get_xaction (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_get_xaction (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.get_xaction.into_var, arg);
   return p;
@@ -12889,7 +12892,7 @@ pt_apply_get_xaction (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_get_xaction (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_get_xaction (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *b = NULL, *r1;
 
@@ -12915,7 +12918,7 @@ pt_print_get_xaction (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_grant (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_grant (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.grant.auth_cmd_list, arg);
   PT_APPLY_WALK (parser, p->info.grant.user_list, arg);
@@ -12929,7 +12932,7 @@ pt_apply_grant (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PT_NODE *
-pt_init_grant (PT_NODE * p)
+pt_init_grant (PT_NODE *p)
 {
   p->info.grant.grant_option = (PT_MISC_TYPE) 0;
 
@@ -12943,7 +12946,7 @@ pt_init_grant (PT_NODE * p)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_grant (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_grant (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *q = 0, *r1, *r2, *r3;
   unsigned int save_custom;
@@ -12979,7 +12982,7 @@ pt_print_grant (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_host_var (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_host_var (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   return p;
 }
@@ -12991,7 +12994,7 @@ pt_apply_host_var (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_host_var (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_host_var (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PT_NODE *t, *or_next;
   PARSER_VARCHAR *q = NULL, *r;
@@ -13088,7 +13091,7 @@ pt_print_host_var (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_insert (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_insert (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.insert.spec, arg);
 
@@ -13115,7 +13118,7 @@ pt_apply_insert (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PT_NODE *
-pt_init_insert (PT_NODE * p)
+pt_init_insert (PT_NODE *p)
 {
   p->info.insert.is_subinsert = (PT_MISC_TYPE) 0;
   p->info.insert.hint = PT_HINT_NONE;
@@ -13130,7 +13133,7 @@ pt_init_insert (PT_NODE * p)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_insert (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_insert (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *b = NULL, *r1, *r2;
   PT_NODE *crt_list = NULL;
@@ -13323,7 +13326,7 @@ pt_print_insert (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_intersection (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_intersection (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.query.with, arg);
   PT_APPLY_WALK (parser, p->info.query.q.union_.arg1, arg);
@@ -13340,7 +13343,7 @@ pt_apply_intersection (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PT_NODE *
-pt_init_intersection (PT_NODE * p)
+pt_init_intersection (PT_NODE *p)
 {
   p->info.query.all_distinct = PT_ALL;
   p->info.query.hint = PT_HINT_NONE;
@@ -13355,7 +13358,7 @@ pt_init_intersection (PT_NODE * p)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_intersection (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_intersection (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *q = NULL, *r1, *r2;
 
@@ -13411,7 +13414,7 @@ pt_print_intersection (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_auto_increment (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_auto_increment (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   return p;
 }
@@ -13423,7 +13426,7 @@ pt_apply_auto_increment (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_auto_increment (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_auto_increment (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *b = NULL, *r1, *r2;
 
@@ -13453,7 +13456,7 @@ pt_print_auto_increment (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_isolation_lvl (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_isolation_lvl (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.isolation_lvl.level, arg);
   return p;
@@ -13465,7 +13468,7 @@ pt_apply_isolation_lvl (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PT_NODE *
-pt_init_isolation_lvl (PT_NODE * p)
+pt_init_isolation_lvl (PT_NODE *p)
 {
   p->info.isolation_lvl.schema = p->info.isolation_lvl.instances = PT_NO_ISOLATION_LEVEL;
   return (p);
@@ -13478,7 +13481,7 @@ pt_init_isolation_lvl (PT_NODE * p)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_isolation_lvl (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_isolation_lvl (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *b = NULL, *r1;
 
@@ -13528,7 +13531,7 @@ pt_print_isolation_lvl (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_method_call (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_method_call (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   if (PT_IS_METHOD (p))
     {
@@ -13547,7 +13550,7 @@ pt_apply_method_call (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_method_call (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_method_call (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *q = 0, *r1, *r2;
 
@@ -13582,7 +13585,7 @@ pt_print_method_call (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_method_def (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_method_def (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.method_def.method_name, arg);
   PT_APPLY_WALK (parser, p->info.method_def.method_args_list, arg);
@@ -13596,7 +13599,7 @@ pt_apply_method_def (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PT_NODE *
-pt_init_method_def (PT_NODE * p)
+pt_init_method_def (PT_NODE *p)
 {
   p->info.method_def.mthd_type = PT_NORMAL;
   return p;
@@ -13609,7 +13612,7 @@ pt_init_method_def (PT_NODE * p)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_method_def (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_method_def (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *q = 0, *r1;
 
@@ -13661,7 +13664,7 @@ pt_print_method_def (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_name (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_name (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.name.path_correlation, arg);
   PT_APPLY_WALK (parser, p->info.name.default_value, arg);
@@ -13676,7 +13679,7 @@ pt_apply_name (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PT_NODE *
-pt_init_name (PT_NODE * p)
+pt_init_name (PT_NODE *p)
 {
   p->info.name.db_object_chn = NULL_CHN;
   return p;
@@ -13689,7 +13692,7 @@ pt_init_name (PT_NODE * p)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_name (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_name (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *q = NULL, *r1;
   unsigned int save_custom = parser->custom_print;
@@ -13961,7 +13964,7 @@ pt_print_name (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_prepare_to_commit (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_prepare_to_commit (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   return p;
 }
@@ -13973,7 +13976,7 @@ pt_apply_prepare_to_commit (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_prepare_to_commit (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_prepare_to_commit (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   char s[PT_MEMB_BUF_SIZE];
 
@@ -13991,7 +13994,7 @@ pt_print_prepare_to_commit (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_remove_trigger (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_remove_trigger (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.remove_trigger.trigger_spec_list, arg);
   return p;
@@ -14004,7 +14007,7 @@ pt_apply_remove_trigger (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_remove_trigger (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_remove_trigger (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *b = NULL, *r1;
 
@@ -14025,7 +14028,7 @@ pt_print_remove_trigger (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_rename (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_rename (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.rename.old_name, arg);
   PT_APPLY_WALK (parser, p->info.rename.in_class, arg);
@@ -14040,7 +14043,7 @@ pt_apply_rename (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_rename (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_rename (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *b = NULL;
   PT_NODE *crt_pair = p;
@@ -14077,7 +14080,7 @@ pt_print_rename (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_rename_trigger (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_rename_trigger (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.rename_trigger.old_name, arg);
   PT_APPLY_WALK (parser, p->info.rename_trigger.new_name, arg);
@@ -14091,7 +14094,7 @@ pt_apply_rename_trigger (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_rename_trigger (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_rename_trigger (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *b = 0, *r1, *r2;
 
@@ -14115,7 +14118,7 @@ pt_print_rename_trigger (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_resolution (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_resolution (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.resolution.attr_mthd_name, arg);
   PT_APPLY_WALK (parser, p->info.resolution.of_sup_class_name, arg);
@@ -14129,7 +14132,7 @@ pt_apply_resolution (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PT_NODE *
-pt_init_resolution (PT_NODE * p)
+pt_init_resolution (PT_NODE *p)
 {
   p->info.resolution.attr_type = PT_NORMAL;
   return p;
@@ -14142,7 +14145,7 @@ pt_init_resolution (PT_NODE * p)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_resolution (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_resolution (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *q = 0, *r1, *r2;
 
@@ -14176,7 +14179,7 @@ pt_print_resolution (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_revoke (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_revoke (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.revoke.auth_cmd_list, arg);
   PT_APPLY_WALK (parser, p->info.revoke.user_list, arg);
@@ -14191,7 +14194,7 @@ pt_apply_revoke (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_revoke (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_revoke (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *q = 0, *r1, *r2, *r3;
   unsigned int save_custom;
@@ -14222,7 +14225,7 @@ pt_print_revoke (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_rollback_work (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_rollback_work (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.rollback_work.save_name, arg);
   return p;
@@ -14235,7 +14238,7 @@ pt_apply_rollback_work (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_rollback_work (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_rollback_work (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *q = 0, *r1;
 
@@ -14260,7 +14263,7 @@ pt_print_rollback_work (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_savepoint (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_savepoint (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.savepoint.save_name, arg);
   return p;
@@ -14273,7 +14276,7 @@ pt_apply_savepoint (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_savepoint (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_savepoint (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *b = NULL, *r1;
 
@@ -14294,7 +14297,7 @@ pt_print_savepoint (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_scope (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_scope (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.scope.from, arg);
   PT_APPLY_WALK (parser, p->info.scope.stmt, arg);
@@ -14308,7 +14311,7 @@ pt_apply_scope (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_scope (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_scope (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *b = NULL, *r1, *r2;
 
@@ -14332,7 +14335,7 @@ pt_print_scope (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_select (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_select (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.query.with, arg);
   PT_APPLY_WALK (parser, p->info.query.q.select.list, arg);
@@ -14370,7 +14373,7 @@ pt_apply_select (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PT_NODE *
-pt_init_select (PT_NODE * p)
+pt_init_select (PT_NODE *p)
 {
   p->info.query.q.select.hint = PT_HINT_NONE;
   p->info.query.q.select.check_cycles = CONNECT_BY_CYCLES_ERROR;
@@ -14388,7 +14391,7 @@ pt_init_select (PT_NODE * p)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_select (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_select (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *q = NULL, *r1 = NULL;
   PT_NODE *temp = NULL, *where_list = NULL;
@@ -15165,7 +15168,7 @@ pt_print_select (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_set_names (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_set_names (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.set_names.charset_node, arg);
   PT_APPLY_WALK (parser, p->info.set_names.collation_node, arg);
@@ -15182,7 +15185,7 @@ pt_apply_set_names (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_set_timezone (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_set_timezone (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.set_timezone.timezone_node, arg);
 
@@ -15196,7 +15199,7 @@ pt_apply_set_timezone (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_set_names (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_set_names (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *b = NULL, *r1;
 
@@ -15225,7 +15228,7 @@ pt_print_set_names (PARSER_CONTEXT * parser, PT_NODE * p)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_set_timezone (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_set_timezone (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *b = NULL, *r1;
 
@@ -15248,7 +15251,7 @@ pt_print_set_timezone (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_set_opt_lvl (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_set_opt_lvl (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.set_opt_lvl.val, arg);
   return p;
@@ -15260,7 +15263,7 @@ pt_apply_set_opt_lvl (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PT_NODE *
-pt_init_set_opt_lvl (PT_NODE * p)
+pt_init_set_opt_lvl (PT_NODE *p)
 {
   p->info.set_opt_lvl.option = PT_OPT_LVL;
   return (p);
@@ -15273,7 +15276,7 @@ pt_init_set_opt_lvl (PT_NODE * p)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_set_opt_lvl (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_set_opt_lvl (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *b = NULL, *r1, *r2 = NULL;
   PT_MISC_TYPE option;
@@ -15308,7 +15311,7 @@ pt_print_set_opt_lvl (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_set_sys_params (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_set_sys_params (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.set_sys_params.val, arg);
   return p;
@@ -15321,7 +15324,7 @@ pt_apply_set_sys_params (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_set_sys_params (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_set_sys_params (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *b = NULL, *r1;
 
@@ -15346,7 +15349,7 @@ pt_print_set_sys_params (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_set_trigger (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_set_trigger (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.set_trigger.val, arg);
   return p;
@@ -15359,7 +15362,7 @@ pt_apply_set_trigger (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_set_trigger (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_set_trigger (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *b = NULL, *r1;
 
@@ -15397,7 +15400,7 @@ pt_print_set_trigger (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_showstmt (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_showstmt (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.showstmt.show_args, arg);
   return p;
@@ -15409,7 +15412,7 @@ pt_apply_showstmt (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PT_NODE *
-pt_init_showstmt (PT_NODE * p)
+pt_init_showstmt (PT_NODE *p)
 {
   p->info.showstmt.show_type = SHOWSTMT_NULL;
   return (p);
@@ -15422,7 +15425,7 @@ pt_init_showstmt (PT_NODE * p)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_showstmt (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_showstmt (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *b = NULL, *r1;
   SHOWSTMT_TYPE show_type;
@@ -15445,7 +15448,7 @@ pt_print_showstmt (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_set_xaction (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_set_xaction (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.set_xaction.xaction_modes, arg);
   return p;
@@ -15458,7 +15461,7 @@ pt_apply_set_xaction (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_set_xaction (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_set_xaction (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *b = NULL, *r1;
 
@@ -15479,7 +15482,7 @@ pt_print_set_xaction (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_sort_spec (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_sort_spec (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.sort_spec.expr, arg);
   return p;
@@ -15491,7 +15494,7 @@ pt_apply_sort_spec (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PT_NODE *
-pt_init_sort_spec (PT_NODE * p)
+pt_init_sort_spec (PT_NODE *p)
 {
   p->info.sort_spec.asc_or_desc = PT_ASC;
   p->info.sort_spec.nulls_first_or_last = PT_NULLS_DEFAULT;
@@ -15505,7 +15508,7 @@ pt_init_sort_spec (PT_NODE * p)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_sort_spec (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_sort_spec (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *q = 0, *r1;
 
@@ -15538,7 +15541,7 @@ pt_print_sort_spec (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_timeout (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_timeout (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.timeout.val, arg);
   return p;
@@ -15551,7 +15554,7 @@ pt_apply_timeout (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_timeout (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_timeout (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *b = NULL, *r1;
   PT_NODE *val;
@@ -15588,7 +15591,7 @@ pt_print_timeout (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_trigger_action (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_trigger_action (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.trigger_action.expression, arg);
   PT_APPLY_WALK (parser, p->info.trigger_action.string, arg);
@@ -15602,7 +15605,7 @@ pt_apply_trigger_action (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_trigger_action (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_trigger_action (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *b = NULL, *r1;
 
@@ -15638,7 +15641,7 @@ pt_print_trigger_action (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_trigger_spec_list (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_trigger_spec_list (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.trigger_spec_list.trigger_name_list, arg);
   PT_APPLY_WALK (parser, p->info.trigger_spec_list.event_list, arg);
@@ -15652,7 +15655,7 @@ pt_apply_trigger_spec_list (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_trigger_spec_list (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_trigger_spec_list (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *b = NULL, *r1;
 
@@ -15672,7 +15675,7 @@ pt_print_trigger_spec_list (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_union_stmt (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_union_stmt (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.query.with, arg);
   PT_APPLY_WALK (parser, p->info.query.q.union_.arg1, arg);
@@ -15695,7 +15698,7 @@ pt_apply_union_stmt (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PT_NODE *
-pt_init_union_stmt (PT_NODE * p)
+pt_init_union_stmt (PT_NODE *p)
 {
   p->info.query.all_distinct = PT_ALL;
   p->info.query.hint = PT_HINT_NONE;
@@ -15710,7 +15713,7 @@ pt_init_union_stmt (PT_NODE * p)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_union_stmt (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_union_stmt (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *q = NULL, *r1, *r2;
 
@@ -15764,7 +15767,7 @@ pt_print_union_stmt (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_update (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_update (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.update.with, arg);
   PT_APPLY_WALK (parser, p->info.update.spec, arg);
@@ -15795,7 +15798,7 @@ pt_apply_update (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PT_NODE *
-pt_init_update (PT_NODE * p)
+pt_init_update (PT_NODE *p)
 {
   p->info.update.hint = PT_HINT_NONE;
   return p;
@@ -15808,7 +15811,7 @@ pt_init_update (PT_NODE * p)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_update (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_update (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *b = NULL, *r1;
 
@@ -16076,7 +16079,7 @@ pt_print_update (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_update_stats (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_update_stats (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.update_stats.class_list, arg);
   return p;
@@ -16089,7 +16092,7 @@ pt_apply_update_stats (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_update_stats (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_update_stats (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *b = 0, *r1;
 
@@ -16127,7 +16130,7 @@ pt_print_update_stats (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_get_stats (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_get_stats (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.get_stats.class_, arg);
   PT_APPLY_WALK (parser, p->info.get_stats.args, arg);
@@ -16142,7 +16145,7 @@ pt_apply_get_stats (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_get_stats (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_get_stats (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *b = 0, *r1;
 
@@ -16179,7 +16182,7 @@ pt_print_get_stats (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_use (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_use (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.use.use_list, arg);
   PT_APPLY_WALK (parser, p->info.use.exclude_list, arg);
@@ -16193,7 +16196,7 @@ pt_apply_use (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_use (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_use (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *b = 0, *r1;
 
@@ -16251,7 +16254,7 @@ pt_print_use (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_value (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_value (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   switch (p->type_enum)
     {
@@ -16271,7 +16274,7 @@ pt_apply_value (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PT_NODE *
-pt_init_value (PT_NODE * p)
+pt_init_value (PT_NODE *p)
 {
   p->info.value.host_var_index = -1;
   return p;
@@ -16286,7 +16289,7 @@ pt_init_value (PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_set_session_variables (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_set_session_variables (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.set_variables.assignments, arg);
   return p;
@@ -16299,7 +16302,7 @@ pt_apply_set_session_variables (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_set_session_variables (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_set_session_variables (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *b = NULL, *r1 = NULL;
   b = pt_append_nulstring (parser, b, "SET ");
@@ -16317,7 +16320,7 @@ pt_print_set_session_variables (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_drop_session_variables (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_drop_session_variables (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.drop_session_var.variables, arg);
   return p;
@@ -16330,7 +16333,7 @@ pt_apply_drop_session_variables (PARSER_CONTEXT * parser, PT_NODE * p, void *arg
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_session_variables (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_session_variables (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *q = NULL, *r = NULL;
 
@@ -16367,7 +16370,7 @@ pt_print_session_variables (PARSER_CONTEXT * parser, PT_NODE * p)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_drop_session_variables (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_drop_session_variables (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PT_NODE *var = NULL;
   PARSER_VARCHAR *b = NULL, *r1 = NULL;
@@ -16421,7 +16424,7 @@ pt_print_drop_session_variables (PARSER_CONTEXT * parser, PT_NODE * p)
  *      print_type_ambiguity flag that disables the caching of the statement.
  */
 static PARSER_VARCHAR *
-pt_print_value (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_value (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   DB_VALUE *val;
   PARSER_VARCHAR *q = 0, *r1;
@@ -16839,7 +16842,7 @@ pt_print_value (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_error_msg (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_error_msg (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   return p;
 }
@@ -16852,7 +16855,7 @@ pt_apply_error_msg (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_error_msg (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_error_msg (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *b = 0;
   char s[PT_MEMB_ERR_BUF_SIZE];
@@ -16885,7 +16888,7 @@ pt_print_error_msg (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_constraint (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_constraint (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   switch (p->info.constraint.type)
     {
@@ -16925,7 +16928,7 @@ pt_apply_constraint (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   node(in):
  */
 static PT_NODE *
-pt_init_constraint (PT_NODE * node)
+pt_init_constraint (PT_NODE *node)
 {
   if (node)
     {
@@ -16941,7 +16944,7 @@ pt_init_constraint (PT_NODE * node)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_col_def_constraint (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_col_def_constraint (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *b = 0, *r1, *r2;
 
@@ -17040,7 +17043,7 @@ pt_print_col_def_constraint (PARSER_CONTEXT * parser, PT_NODE * p)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_constraint (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_constraint (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *b = 0, *r1, *r2;
 
@@ -17163,7 +17166,7 @@ pt_print_constraint (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_pointer (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_pointer (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   if (p->info.pointer.do_walk)
     {
@@ -17179,7 +17182,7 @@ pt_apply_pointer (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   node(in):
  */
 static PT_NODE *
-pt_init_pointer (PT_NODE * node)
+pt_init_pointer (PT_NODE *node)
 {
   if (node)
     {
@@ -17197,7 +17200,7 @@ pt_init_pointer (PT_NODE * node)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_pointer (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_pointer (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *b = NULL;
 
@@ -17218,7 +17221,7 @@ pt_print_pointer (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_node_list (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_node_list (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.node_list.list, arg);
   return p;
@@ -17230,7 +17233,7 @@ pt_apply_node_list (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PT_NODE *
-pt_init_node_list (PT_NODE * p)
+pt_init_node_list (PT_NODE *p)
 {
   p->info.node_list.list_type = (PT_MISC_TYPE) 0;
   return p;
@@ -17243,7 +17246,7 @@ pt_init_node_list (PT_NODE * p)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_node_list (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_node_list (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *b = pt_print_bytes_l (parser, p->info.node_list.list);
   return b;
@@ -17259,7 +17262,7 @@ pt_print_node_list (PARSER_CONTEXT * parser, PT_NODE * p)
  *   arg(in):
  */
 static PT_NODE *
-pt_apply_merge (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_merge (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.merge.into, arg);
   PT_APPLY_WALK (parser, p->info.merge.using_clause, arg);
@@ -17283,7 +17286,7 @@ pt_apply_merge (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  *   p(in):
  */
 static PT_NODE *
-pt_init_merge (PT_NODE * p)
+pt_init_merge (PT_NODE *p)
 {
   p->info.merge.hint = PT_HINT_NONE;
 
@@ -17297,7 +17300,7 @@ pt_init_merge (PT_NODE * p)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_merge (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_merge (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *q = 0, *r1;
   PT_NODE_LIST_INFO *list_info = NULL;
@@ -17419,7 +17422,7 @@ pt_print_merge (PARSER_CONTEXT * parser, PT_NODE * p)
  * arg (in) :
  */
 static PT_NODE *
-pt_apply_tuple_value (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_tuple_value (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.tuple_value.name, arg);
   return p;
@@ -17431,7 +17434,7 @@ pt_apply_tuple_value (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  * p (in) :
  */
 static PT_NODE *
-pt_init_tuple_value (PT_NODE * p)
+pt_init_tuple_value (PT_NODE *p)
 {
   p->info.tuple_value.index = -1;
 
@@ -17445,7 +17448,7 @@ pt_init_tuple_value (PT_NODE * p)
  * p (in) :
  */
 static PARSER_VARCHAR *
-pt_print_tuple_value (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_tuple_value (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   if (p->info.tuple_value.name == NULL)
     {
@@ -17465,14 +17468,14 @@ pt_print_tuple_value (PARSER_CONTEXT * parser, PT_NODE * p)
  * arg (in) :
  */
 static PT_NODE *
-pt_apply_insert_value (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_insert_value (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.insert_value.original_node, arg);
   return p;
 }
 
 static PT_NODE *
-pt_apply_kill (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_kill (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   return p;
 }
@@ -17483,7 +17486,7 @@ pt_apply_kill (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  * p (in) :
  */
 static PT_NODE *
-pt_init_insert_value (PT_NODE * p)
+pt_init_insert_value (PT_NODE *p)
 {
   db_make_null (&p->info.insert_value.value);
 
@@ -17491,7 +17494,7 @@ pt_init_insert_value (PT_NODE * p)
 }
 
 static PT_NODE *
-pt_init_kill (PT_NODE * p)
+pt_init_kill (PT_NODE *p)
 {
   p->info.killstmt.kill_type = KILLSTMT_TRAN;
 
@@ -17508,7 +17511,7 @@ pt_init_kill (PT_NODE * p)
  * arg(in):
  */
 static PT_NODE *
-pt_apply_with_clause (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_with_clause (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.with_clause.cte_definition_list, arg);
 
@@ -17525,7 +17528,7 @@ pt_apply_with_clause (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  * arg(in):
  */
 static PT_NODE *
-pt_apply_cte (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_cte (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.cte.non_recursive_part, arg);
   PT_APPLY_WALK (parser, p->info.cte.recursive_part, arg);
@@ -17540,7 +17543,7 @@ pt_apply_cte (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  * p (in) :
  */
 static PARSER_VARCHAR *
-pt_print_insert_value (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_insert_value (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   /* The original_node is HOST_VAR type. Use custom print to avoid printing HOST_VAR. */
   if (parser->custom_print & PT_PRINT_DB_VALUE)
@@ -17566,7 +17569,7 @@ pt_print_insert_value (PARSER_CONTEXT * parser, PT_NODE * p)
  * p (in) :
  */
 static PARSER_VARCHAR *
-pt_print_with_clause (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_with_clause (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *q = NULL;
   PT_NODE *cte;
@@ -17599,7 +17602,7 @@ pt_print_with_clause (PARSER_CONTEXT * parser, PT_NODE * p)
  * p (in) :
  */
 static PARSER_VARCHAR *
-pt_print_cte (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_cte (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *q = NULL, *r1;
 
@@ -17648,7 +17651,7 @@ pt_print_cte (PARSER_CONTEXT * parser, PT_NODE * p)
  * arg (in) :
  */
 static PT_NODE *
-pt_apply_named_arg (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_named_arg (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.named_arg.name, arg);
   PT_APPLY_WALK (parser, p->info.named_arg.value, arg);
@@ -17662,7 +17665,7 @@ pt_apply_named_arg (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  * p (in) :
  */
 static PARSER_VARCHAR *
-pt_print_named_arg (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_named_arg (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *res = pt_print_bytes (parser, p->info.named_arg.name);
   PARSER_VARCHAR *v = pt_print_bytes (parser, p->info.named_arg.value);
@@ -17679,7 +17682,7 @@ pt_print_named_arg (PARSER_CONTEXT * parser, PT_NODE * p)
  *   p(in):
  */
 static PARSER_VARCHAR *
-pt_print_index_columns (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_index_columns (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *b = NULL, *r1;
   int list_size = 0, i;
@@ -17761,7 +17764,7 @@ parser_init_func_vectors (void)
  *   node (in):
  */
 bool
-pt_is_const_expr_node (PT_NODE * node)
+pt_is_const_expr_node (PT_NODE *node)
 {
   if (node == NULL)
     {
@@ -18087,7 +18090,7 @@ pt_is_const_expr_node (PT_NODE * node)
  *   node(in):
  */
 bool
-pt_is_ascii_string_value_node (const PT_NODE * const node)
+pt_is_ascii_string_value_node (const PT_NODE *const node)
 {
   return (PT_IS_VALUE_NODE (node) && PT_IS_CHAR_STRING_TYPE (node->type_enum)
 	  && !PT_IS_NATIONAL_CHAR_STRING_TYPE (node->type_enum));
@@ -18108,7 +18111,7 @@ pt_is_ascii_string_value_node (const PT_NODE * const node)
  *  The links array is freed
  */
 void
-pt_restore_assignment_links (PT_NODE * assigns, PT_NODE ** links, int count)
+pt_restore_assignment_links (PT_NODE *assigns, PT_NODE **links, int count)
 {
   PT_NODE *lhs = NULL, *rhs = NULL, *att = NULL;
   int links_idx = 0;
@@ -18159,9 +18162,9 @@ pt_restore_assignment_links (PT_NODE * assigns, PT_NODE ** links, int count)
  * Note:
  */
 int
-pt_get_assignment_lists (PARSER_CONTEXT * parser, PT_NODE ** select_names, PT_NODE ** select_values,
-			 PT_NODE ** const_names, PT_NODE ** const_values, int *no_vals, int *no_consts,
-			 PT_NODE * assign, PT_NODE *** old_links)
+pt_get_assignment_lists (PARSER_CONTEXT *parser, PT_NODE **select_names, PT_NODE **select_values,
+			 PT_NODE **const_names, PT_NODE **const_values, int *no_vals, int *no_consts,
+			 PT_NODE *assign, PT_NODE ***old_links)
 {
 #define ASSIGN_LINKS_EXTENT	10
 
@@ -18325,7 +18328,7 @@ exit_on_error:
  * node(in)   : Function index expression
  */
 PT_NODE *
-pt_function_index_skip_expr (PT_NODE * node)
+pt_function_index_skip_expr (PT_NODE *node)
 {
   if (node == NULL || !PT_IS_EXPR_NODE (node))
     {
@@ -18351,7 +18354,7 @@ pt_function_index_skip_expr (PT_NODE * node)
  *   node(in): PT_EXPR
  */
 static bool
-pt_is_nested_expr (const PT_NODE * node)
+pt_is_nested_expr (const PT_NODE *node)
 {
   PT_NODE *func, *arg;
   assert (node->node_type == PT_EXPR);
@@ -18398,7 +18401,7 @@ pt_is_nested_expr (const PT_NODE * node)
  *   func(in): parse tree node function
  */
 static bool
-pt_function_is_allowed_as_function_index (const PT_NODE * func)
+pt_function_is_allowed_as_function_index (const PT_NODE *func)
 {
   assert (func != NULL && func->node_type == PT_FUNCTION);
 
@@ -18445,7 +18448,7 @@ pt_function_is_allowed_as_function_index (const PT_NODE * func)
  *   expr(in): expression parse tree node
  */
 static bool
-pt_expr_is_allowed_as_function_index (const PT_NODE * expr)
+pt_expr_is_allowed_as_function_index (const PT_NODE *expr)
 {
   assert (expr != NULL && expr->node_type == PT_EXPR);
 
@@ -18587,7 +18590,7 @@ pt_expr_is_allowed_as_function_index (const PT_NODE * expr)
  *   expr(in): PT_EXPR
  */
 bool
-pt_is_function_index_expr (PARSER_CONTEXT * parser, PT_NODE * expr, bool report_error)
+pt_is_function_index_expr (PARSER_CONTEXT *parser, PT_NODE *expr, bool report_error)
 {
   if (!expr)
     {
@@ -18661,7 +18664,7 @@ pt_is_function_index_expr (PARSER_CONTEXT * parser, PT_NODE * expr, bool report_
  *   parser(in):
  */
 PT_NODE *
-pt_expr_to_sort_spec (PARSER_CONTEXT * parser, PT_NODE * expr)
+pt_expr_to_sort_spec (PARSER_CONTEXT *parser, PT_NODE *expr)
 {
   PT_NODE *node = NULL;
 
@@ -18749,7 +18752,7 @@ pt_expr_to_sort_spec (PARSER_CONTEXT * parser, PT_NODE * expr)
  *   spec_id(out): the spec id of the PT_SPEC used (if false is returned)
  */
 bool
-pt_is_join_expr (PT_NODE * expr, UINTPTR * spec_id)
+pt_is_join_expr (PT_NODE *expr, UINTPTR *spec_id)
 {
   PT_NODE *func = NULL;
   PT_NODE *arg = NULL;
@@ -18839,7 +18842,7 @@ pt_is_join_expr (PT_NODE * expr, UINTPTR * spec_id)
  *   parser(in):
  */
 PT_NODE *
-pt_sort_spec_list_to_name_node_list (PARSER_CONTEXT * parser, PT_NODE * sort_spec_list)
+pt_sort_spec_list_to_name_node_list (PARSER_CONTEXT *parser, PT_NODE *sort_spec_list)
 {
   PT_NODE *name_list = NULL;
   PT_NODE *node = NULL, *name_node = NULL;
@@ -18881,7 +18884,7 @@ pt_sort_spec_list_to_name_node_list (PARSER_CONTEXT * parser, PT_NODE * sort_spe
  * arg (in)    : Argument for function g.
  */
 static PT_NODE *
-pt_apply_vacuum (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_vacuum (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   assert (PT_IS_VACUUM_NODE (p));
 
@@ -18895,7 +18898,7 @@ pt_apply_vacuum (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  * p (in) : VACUUM parse tree node.
  */
 static PT_NODE *
-pt_init_vacuum (PT_NODE * p)
+pt_init_vacuum (PT_NODE *p)
 {
   assert (PT_IS_VACUUM_NODE (p));
 
@@ -18910,7 +18913,7 @@ pt_init_vacuum (PT_NODE * p)
  * p (in)      :
  */
 static PARSER_VARCHAR *
-pt_print_vacuum (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_vacuum (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *q = NULL;
 
@@ -18930,7 +18933,7 @@ pt_print_vacuum (PARSER_CONTEXT * parser, PT_NODE * p)
  * arg (in) :
  */
 static PT_NODE *
-pt_apply_query_trace (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_query_trace (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   return p;
 }
@@ -18941,7 +18944,7 @@ pt_apply_query_trace (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
  * p (in) :
  */
 static PT_NODE *
-pt_init_query_trace (PT_NODE * p)
+pt_init_query_trace (PT_NODE *p)
 {
   p->info.trace.on_off = PT_TRACE_OFF;
   p->info.trace.format = PT_TRACE_FORMAT_TEXT;
@@ -18956,7 +18959,7 @@ pt_init_query_trace (PT_NODE * p)
  * p (in) :
  */
 static PARSER_VARCHAR *
-pt_print_query_trace (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_query_trace (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *b = NULL;
   PT_MISC_TYPE onoff, format;
@@ -18980,7 +18983,7 @@ pt_print_query_trace (PARSER_CONTEXT * parser, PT_NODE * p)
  * pt_clean_tree_copy_info () - deallocate memory used by a PT_TREE_COPY_INFO
  */
 static void
-pt_clean_tree_copy_info (PT_TREE_COPY_INFO * tree_copy_info)
+pt_clean_tree_copy_info (PT_TREE_COPY_INFO *tree_copy_info)
 {
   PT_CTE_COPY_INFO *cte_info_it, *save_next;
 
@@ -18993,7 +18996,7 @@ pt_clean_tree_copy_info (PT_TREE_COPY_INFO * tree_copy_info)
 }
 
 static PT_NODE *
-pt_apply_json_table (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_json_table (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.json_table_info.expr, arg);
   PT_APPLY_WALK (parser, p->info.json_table_info.tree, arg);
@@ -19001,7 +19004,7 @@ pt_apply_json_table (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
 }
 
 static PARSER_VARCHAR *
-pt_print_json_table (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_json_table (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *pstr = NULL;
   PARSER_VARCHAR *substr = NULL;
@@ -19028,7 +19031,7 @@ pt_print_json_table (PARSER_CONTEXT * parser, PT_NODE * p)
 }
 
 static PT_NODE *
-pt_apply_json_table_node (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_json_table_node (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.json_table_node_info.columns, arg);
   PT_APPLY_WALK (parser, p->info.json_table_node_info.nested_paths, arg);
@@ -19036,7 +19039,7 @@ pt_apply_json_table_node (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
 }
 
 static PARSER_VARCHAR *
-pt_print_json_table_node (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_json_table_node (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *pstr = NULL;
   PARSER_VARCHAR *substr = NULL;
@@ -19083,7 +19086,7 @@ pt_print_json_table_node (PARSER_CONTEXT * parser, PT_NODE * p)
 }
 
 static PT_NODE *
-pt_init_json_table_column (PT_NODE * p)
+pt_init_json_table_column (PT_NODE *p)
 {
   p->info.json_table_column_info.func = JSON_TABLE_EXTRACT;
   p->info.json_table_column_info.on_error.m_behavior = JSON_TABLE_RETURN_NULL;
@@ -19092,7 +19095,7 @@ pt_init_json_table_column (PT_NODE * p)
 }
 
 static PT_NODE *
-pt_apply_json_table_column (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_json_table_column (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.json_table_column_info.name, arg);
   return p;
@@ -19133,8 +19136,8 @@ pt_json_table_column_behavior_to_string (const json_table_column_behavior_type &
 // column_behavior (in) : column behavior
 //
 static PARSER_VARCHAR *
-pt_print_json_table_column_error_or_empty_behavior (PARSER_CONTEXT * parser,
-						    PARSER_VARCHAR * pstr,
+pt_print_json_table_column_error_or_empty_behavior (PARSER_CONTEXT *parser,
+						    PARSER_VARCHAR *pstr,
 						    const struct json_table_column_behavior &column_behavior)
 {
   PARSER_VARCHAR *substr = NULL;
@@ -19162,7 +19165,7 @@ pt_print_json_table_column_error_or_empty_behavior (PARSER_CONTEXT * parser,
 // pstr (in/out) : parser varchar where printed column info is appended
 //
 static PARSER_VARCHAR *
-pt_print_json_table_column_info (PARSER_CONTEXT * parser, PT_NODE * p, PARSER_VARCHAR * pstr)
+pt_print_json_table_column_info (PARSER_CONTEXT *parser, PT_NODE *p, PARSER_VARCHAR *pstr)
 {
   PARSER_VARCHAR *substr = NULL;
   const char *type = NULL;
@@ -19251,7 +19254,7 @@ pt_print_json_table_column_info (PARSER_CONTEXT * parser, PT_NODE * p, PARSER_VA
 }
 
 static PARSER_VARCHAR *
-pt_print_json_table_columns (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_json_table_columns (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *pstr = NULL;
   PT_NODE *p_it = NULL;
@@ -19283,7 +19286,7 @@ pt_move_node (REFPTR (PT_NODE, destp), REFPTR (PT_NODE, srcp))
 }
 
 static PT_NODE *
-pt_apply_dblink_table (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_dblink_table (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   if (p->info.dblink_table.is_name)
     {
@@ -19303,7 +19306,7 @@ pt_apply_dblink_table (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
 }
 
 static PARSER_VARCHAR *
-pt_print_remote_info (PARSER_CONTEXT * parser, PT_DBLINK_INFO * pt, bool is_dml)
+pt_print_remote_info (PARSER_CONTEXT *parser, PT_DBLINK_INFO *pt, bool is_dml)
 {
   PARSER_VARCHAR *var = 0;
   char *t, *s;
@@ -19355,7 +19358,7 @@ pt_print_remote_info (PARSER_CONTEXT * parser, PT_DBLINK_INFO * pt, bool is_dml)
 }
 
 static PARSER_VARCHAR *
-pt_print_dblink_table (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_dblink_table (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *q = 0, *var = 0, *r;
   PT_DBLINK_INFO *pt = &(p->info.dblink_table);
@@ -19433,7 +19436,7 @@ pt_print_dblink_table (PARSER_CONTEXT * parser, PT_NODE * p)
 }
 
 static PARSER_VARCHAR *
-pt_print_dblink_table_dml (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_dblink_table_dml (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *q = 0, *r;
   PT_DBLINK_INFO *pt = &(p->info.dblink_table);
@@ -19473,7 +19476,7 @@ pt_print_dblink_table_dml (PARSER_CONTEXT * parser, PT_NODE * p)
 }
 
 static PT_NODE *
-pt_apply_create_server (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_create_server (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.create_server.server_name, arg);
   PT_APPLY_WALK (parser, p->info.create_server.owner_name, arg);
@@ -19489,7 +19492,7 @@ pt_apply_create_server (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
 }
 
 static PARSER_VARCHAR *
-pt_print_create_server (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_create_server (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *q = 0, *r;
   PT_CREATE_SERVER_INFO *si = &(p->info.create_server);
@@ -19545,7 +19548,7 @@ pt_print_create_server (PARSER_CONTEXT * parser, PT_NODE * p)
 }
 
 static PT_NODE *
-pt_apply_drop_server (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_drop_server (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.drop_server.owner_name, arg);
   PT_APPLY_WALK (parser, p->info.drop_server.server_name, arg);
@@ -19554,7 +19557,7 @@ pt_apply_drop_server (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
 }
 
 static PARSER_VARCHAR *
-pt_print_drop_server (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_drop_server (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *q = 0, *r;
 
@@ -19580,7 +19583,7 @@ pt_print_drop_server (PARSER_CONTEXT * parser, PT_NODE * p)
 }
 
 static PT_NODE *
-pt_apply_rename_server (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_rename_server (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.rename_server.old_name, arg);
   PT_APPLY_WALK (parser, p->info.rename_server.new_name, arg);
@@ -19589,7 +19592,7 @@ pt_apply_rename_server (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
 }
 
 static PARSER_VARCHAR *
-pt_print_rename_server (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_rename_server (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *q = 0, *r;
 
@@ -19610,7 +19613,7 @@ pt_print_rename_server (PARSER_CONTEXT * parser, PT_NODE * p)
 }
 
 static PT_NODE *
-pt_apply_alter_server (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_alter_server (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, p->info.alter_server.server_name, arg);
   PT_APPLY_WALK (parser, p->info.alter_server.current_owner_name, arg);
@@ -19627,7 +19630,7 @@ pt_apply_alter_server (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
 }
 
 static PARSER_VARCHAR *
-pt_print_alter_server (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_alter_server (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *q = 0, *r;
   char *pt;
@@ -19761,7 +19764,7 @@ pt_print_alter_server (PARSER_CONTEXT * parser, PT_NODE * p)
 }
 
 static PT_NODE *
-pt_apply_alter_synonym (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_alter_synonym (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, PT_SYNONYM_NAME (p), arg);
   PT_APPLY_WALK (parser, PT_SYNONYM_TARGET_NAME (p), arg);
@@ -19769,7 +19772,7 @@ pt_apply_alter_synonym (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
 }
 
 static PT_NODE *
-pt_apply_create_synonym (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_create_synonym (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, PT_SYNONYM_NAME (p), arg);
   PT_APPLY_WALK (parser, PT_SYNONYM_TARGET_NAME (p), arg);
@@ -19777,14 +19780,14 @@ pt_apply_create_synonym (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
 }
 
 static PT_NODE *
-pt_apply_drop_synonym (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_drop_synonym (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, PT_SYNONYM_NAME (p), arg);
   return p;
 }
 
 static PT_NODE *
-pt_apply_rename_synonym (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
+pt_apply_rename_synonym (PARSER_CONTEXT *parser, PT_NODE *p, void *arg)
 {
   PT_APPLY_WALK (parser, PT_SYNONYM_OLD_NAME (p), arg);
   PT_APPLY_WALK (parser, PT_SYNONYM_NEW_NAME (p), arg);
@@ -19792,7 +19795,7 @@ pt_apply_rename_synonym (PARSER_CONTEXT * parser, PT_NODE * p, void *arg)
 }
 
 static PARSER_VARCHAR *
-pt_print_alter_synonym (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_alter_synonym (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *q = NULL, *r1;
   unsigned int save_custom;
@@ -19842,7 +19845,7 @@ pt_print_alter_synonym (PARSER_CONTEXT * parser, PT_NODE * p)
 }
 
 static PARSER_VARCHAR *
-pt_print_create_synonym (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_create_synonym (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *q = NULL, *r1;
   unsigned int save_custom;
@@ -19892,7 +19895,7 @@ pt_print_create_synonym (PARSER_CONTEXT * parser, PT_NODE * p)
 }
 
 static PARSER_VARCHAR *
-pt_print_drop_synonym (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_drop_synonym (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *q = NULL, *r1;
   unsigned int save_custom;
@@ -19927,7 +19930,7 @@ pt_print_drop_synonym (PARSER_CONTEXT * parser, PT_NODE * p)
 }
 
 static PARSER_VARCHAR *
-pt_print_rename_synonym (PARSER_CONTEXT * parser, PT_NODE * p)
+pt_print_rename_synonym (PARSER_CONTEXT *parser, PT_NODE *p)
 {
   PARSER_VARCHAR *q = NULL, *r1;
   unsigned int save_custom;
