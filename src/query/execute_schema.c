@@ -278,7 +278,7 @@ static int build_att_coll_change_map (TP_DOMAIN * curr_domain, TP_DOMAIN * req_d
 				      SM_ATTR_PROP_CHG * attr_chg_properties);
 
 static int check_att_chg_allowed (const char *att_name, const PT_TYPE_ENUM t, const SM_ATTR_PROP_CHG * attr_chg_prop,
-				  SM_ATTR_CHG_SOL chg_how, bool log_error_allowed, bool *new_attempt);
+				  SM_ATTR_CHG_SOL chg_how, bool log_error_allowed, bool * new_attempt);
 
 static bool is_att_property_structure_checked (const SM_ATTR_PROP_CHG * attr_chg_properties);
 
@@ -288,7 +288,7 @@ static void reset_att_property_structure (SM_ATTR_PROP_CHG * attr_chg_properties
 
 static bool is_att_prop_set (const int prop, const int value);
 
-static int get_att_order_from_def (PT_NODE * attribute, bool *ord_first, const char **ord_after_name);
+static int get_att_order_from_def (PT_NODE * attribute, bool * ord_first, const char **ord_after_name);
 
 static int check_default_on_update_clause (PARSER_CONTEXT * parser, PT_NODE * attribute);
 
@@ -317,7 +317,7 @@ static int check_change_attribute (PARSER_CONTEXT * parser, DB_CTMPL * ctemplate
 				   SM_ATTR_PROP_CHG * attr_chg_prop, SM_ATTR_CHG_SOL * change_mode);
 
 static int check_change_class_collation (PARSER_CONTEXT * parser, DB_CTMPL * ctemplate, PT_ALTER_INFO * alter,
-					 bool *need_update, int *collation_id);
+					 bool * need_update, int *collation_id);
 
 static int sort_constr_info_list (SM_CONSTRAINT_INFO ** source);
 static int save_constraint_info_from_pt_node (SM_CONSTRAINT_INFO ** save_info, const PT_NODE * const pt_constr);
@@ -371,7 +371,7 @@ static int execute_create_select_query (PARSER_CONTEXT * parser, const char *con
 static int do_find_auto_increment_serial (MOP * auto_increment_obj, const char *class_name, const char *attr_name);
 static int do_check_fk_constraints_internal (DB_CTMPL * ctemplate, PT_NODE * constraints, bool is_partitioned);
 
-static int get_index_type_qualifiers (MOP obj, bool *is_reverse, bool *is_unique, const char *index_name);
+static int get_index_type_qualifiers (MOP obj, bool * is_reverse, bool * is_unique, const char *index_name);
 static SM_PARTITION *pt_node_to_partition_info (PARSER_CONTEXT * parser, PT_NODE * node, PT_NODE * entity_name,
 						char *class_name, char *partition_name, DB_VALUE * minval);
 static int do_save_all_indexes (MOP classmop, SM_CONSTRAINT_INFO ** saved_index_info_listpp);
@@ -402,7 +402,7 @@ int ib_thread_count = 0;
  *       dedicated processing functions. See do_alter() for details.
  */
 static int
-do_alter_one_clause_with_template (PARSER_CONTEXT *parser, PT_NODE *alter)
+do_alter_one_clause_with_template (PARSER_CONTEXT * parser, PT_NODE * alter)
 {
   const char *entity_name, *new_query;
   const char *attr_name, *mthd_name, *mthd_file, *attr_mthd_name;
@@ -1404,7 +1404,7 @@ alter_partition_fail:
  *       the new name of the class.
  */
 static int
-do_alter_clause_rename_entity (PARSER_CONTEXT *const parser, PT_NODE *const alter)
+do_alter_clause_rename_entity (PARSER_CONTEXT * const parser, PT_NODE * const alter)
 {
   int error_code = NO_ERROR;
   const PT_ALTER_CODE alter_code = alter->info.alter.code;
@@ -1456,7 +1456,7 @@ error_exit:
  *       affected in any way.
  */
 static int
-do_alter_clause_add_index (PARSER_CONTEXT *const parser, PT_NODE *const alter)
+do_alter_clause_add_index (PARSER_CONTEXT * const parser, PT_NODE * const alter)
 {
 
   int error = NO_ERROR;
@@ -1494,7 +1494,7 @@ do_alter_clause_add_index (PARSER_CONTEXT *const parser, PT_NODE *const alter)
  *       affected in any way.
  */
 static int
-do_alter_clause_drop_index (PARSER_CONTEXT *const parser, PT_NODE *const alter)
+do_alter_clause_drop_index (PARSER_CONTEXT * const parser, PT_NODE * const alter)
 {
   int error_code = NO_ERROR;
   const PT_ALTER_CODE alter_code = alter->info.alter.code;
@@ -1551,7 +1551,7 @@ do_alter_clause_drop_index (PARSER_CONTEXT *const parser, PT_NODE *const alter)
  */
 
 static int
-do_alter_change_auto_increment (PARSER_CONTEXT *const parser, PT_NODE *const alter)
+do_alter_change_auto_increment (PARSER_CONTEXT * const parser, PT_NODE * const alter)
 {
   const char *entity_name = NULL;
   DB_OBJECT *class_obj = NULL;
@@ -1623,7 +1623,7 @@ change_ai_error:
  *   alter(in/out): Parse tree of an alter statement
  */
 int
-do_alter (PARSER_CONTEXT *parser, PT_NODE *alter)
+do_alter (PARSER_CONTEXT * parser, PT_NODE * alter)
 {
   int error_code = NO_ERROR;
   PT_NODE *crt_clause = NULL;
@@ -1744,7 +1744,7 @@ error_exit:
  *   statement(in): Parse tree of a grant statement
  */
 int
-do_grant (const PARSER_CONTEXT *parser, const PT_NODE *statement)
+do_grant (const PARSER_CONTEXT * parser, const PT_NODE * statement)
 {
   int error = NO_ERROR;
   PT_NODE *user, *user_list;
@@ -1861,7 +1861,7 @@ end:
  *   statement(in): Parse tree of a revoke statement
  */
 int
-do_revoke (const PARSER_CONTEXT *parser, const PT_NODE *statement)
+do_revoke (const PARSER_CONTEXT * parser, const PT_NODE * statement)
 {
   int error = NO_ERROR;
 
@@ -1970,7 +1970,7 @@ end:
  *   statement(in): Parse tree of a create user statement
  */
 int
-do_create_user (const PARSER_CONTEXT *parser, const PT_NODE *statement)
+do_create_user (const PARSER_CONTEXT * parser, const PT_NODE * statement)
 {
   int error = NO_ERROR;
   DB_OBJECT *user, *group, *member;
@@ -2190,7 +2190,7 @@ end:
  *   statement(in): Parse tree of a drop user statement
  */
 int
-do_drop_user (const PARSER_CONTEXT *parser, const PT_NODE *statement)
+do_drop_user (const PARSER_CONTEXT * parser, const PT_NODE * statement)
 {
   int error = NO_ERROR;
   DB_OBJECT *user = NULL;
@@ -2248,7 +2248,7 @@ do_drop_user (const PARSER_CONTEXT *parser, const PT_NODE *statement)
  *   statement(in): Parse tree of an alter statement
  */
 int
-do_alter_user (const PARSER_CONTEXT *parser, const PT_NODE *statement)
+do_alter_user (const PARSER_CONTEXT * parser, const PT_NODE * statement)
 {
   int error = NO_ERROR;
   DB_OBJECT *user, *member;
@@ -2443,7 +2443,7 @@ drop_class_name (const char *name, bool is_cascade_constraints)
  *   statement(in/out): Parse tree of a drop statement
  */
 int
-do_drop (PARSER_CONTEXT *parser, PT_NODE *statement)
+do_drop (PARSER_CONTEXT * parser, PT_NODE * statement)
 {
   int error = NO_ERROR;
   PT_NODE *entity_spec_list, *entity_spec;
@@ -2512,7 +2512,7 @@ error_exit:
  *                                    with the given class_name is not found
  */
 int
-update_locksets_for_multiple_rename (const char *class_name, int *num_mops, MOP *mop_set, int *num_names,
+update_locksets_for_multiple_rename (const char *class_name, int *num_mops, MOP * mop_set, int *num_names,
 				     char **name_set, bool error_on_misssing_class)
 {
   DB_OBJECT *class_mop = NULL;
@@ -2573,7 +2573,7 @@ update_locksets_for_multiple_rename (const char *class_name, int *num_mops, MOP 
  *       (locator_reserve_class_names ()).
  */
 int
-acquire_locks_for_multiple_rename (const PT_NODE *statement)
+acquire_locks_for_multiple_rename (const PT_NODE * statement)
 {
   int error = NO_ERROR;
   const PT_NODE *current_rename = NULL;
@@ -2726,7 +2726,7 @@ error_exit:
  *   statement(in): Parse tree of a rename statement
  */
 int
-do_rename (PARSER_CONTEXT *parser, PT_NODE *statement)
+do_rename (PARSER_CONTEXT * parser, PT_NODE * statement)
 {
   int error = NO_ERROR;
   const PT_NODE *current_rename = NULL;
@@ -2863,8 +2863,8 @@ get_reverse_unique_index_type (const bool is_reverse, const bool is_unique)
  *   do_index(in) : The operation to be performed (creating or dropping)
  */
 static int
-create_or_drop_index_helper (PARSER_CONTEXT *parser, const char *const constraint_name, const bool is_reverse,
-			     const bool is_unique, const PT_INDEX_INFO *idx_info, DB_OBJECT *const obj,
+create_or_drop_index_helper (PARSER_CONTEXT * parser, const char *const constraint_name, const bool is_reverse,
+			     const bool is_unique, const PT_INDEX_INFO * idx_info, DB_OBJECT * const obj,
 			     DO_INDEX do_index)
 {
   int error = NO_ERROR;
@@ -3166,7 +3166,7 @@ end:
  *   statement(in) : Parse tree of a create index statement
  */
 int
-do_create_index (PARSER_CONTEXT *parser, const PT_NODE *statement)
+do_create_index (PARSER_CONTEXT * parser, const PT_NODE * statement)
 {
   PT_NODE *cls;
   DB_OBJECT *obj;
@@ -3206,7 +3206,7 @@ do_create_index (PARSER_CONTEXT *parser, const PT_NODE *statement)
  *   statement(in): Parse tree of a drop index statement
  */
 int
-do_drop_index (PARSER_CONTEXT *parser, const PT_NODE *statement)
+do_drop_index (PARSER_CONTEXT * parser, const PT_NODE * statement)
 {
   PT_NODE *cls = NULL;
   DB_OBJECT *obj = NULL;
@@ -3279,7 +3279,7 @@ do_drop_index (PARSER_CONTEXT *parser, const PT_NODE *statement)
  *   statement(in): Parse tree of a alter index statement
  */
 static int
-do_alter_index_rebuild (PARSER_CONTEXT *parser, const PT_NODE *statement)
+do_alter_index_rebuild (PARSER_CONTEXT * parser, const PT_NODE * statement)
 {
   int error = NO_ERROR;
   DB_OBJECT *obj;
@@ -3612,7 +3612,7 @@ error_exit:
  *   statement(in): Parse tree of a alter index statement
  */
 static int
-do_alter_index_rename (PARSER_CONTEXT *parser, const PT_NODE *statement)
+do_alter_index_rename (PARSER_CONTEXT * parser, const PT_NODE * statement)
 {
   int error = NO_ERROR;
   DB_OBJECT *obj;
@@ -3729,7 +3729,7 @@ error_exit:
  *   statement(in): Parse tree of a alter index statement
  */
 static int
-do_alter_index_comment (PARSER_CONTEXT *parser, const PT_NODE *statement)
+do_alter_index_comment (PARSER_CONTEXT * parser, const PT_NODE * statement)
 {
   int error = NO_ERROR;
   DB_OBJECT *obj;
@@ -3831,7 +3831,7 @@ error_exit:
  *   statement(in): Parse tree of a alter index statement
  */
 int
-do_alter_index (PARSER_CONTEXT *parser, const PT_NODE *statement)
+do_alter_index (PARSER_CONTEXT * parser, const PT_NODE * statement)
 {
   int error = NO_ERROR;
 
@@ -3873,7 +3873,7 @@ do_alter_index (PARSER_CONTEXT *parser, const PT_NODE *statement)
  * Note:
  */
 static int
-do_create_partition (PARSER_CONTEXT *parser, PT_NODE *alter, SM_PARTITION_ALTER_INFO *pinfo)
+do_create_partition (PARSER_CONTEXT * parser, PT_NODE * alter, SM_PARTITION_ALTER_INFO * pinfo)
 {
   int error;
   PT_NODE *alter_info, *hash_parts, *newparts, *hashtail;
@@ -4455,7 +4455,7 @@ end_create:
  *
  */
 static SM_FUNCTION_INFO *
-compile_partition_expression (PARSER_CONTEXT *parser, PT_NODE *entity_name, PT_NODE *pinfo)
+compile_partition_expression (PARSER_CONTEXT * parser, PT_NODE * entity_name, PT_NODE * pinfo)
 {
   PT_NODE *spec = NULL, *expr = NULL;
   SM_FUNCTION_INFO *part_expr = NULL;
@@ -4504,7 +4504,7 @@ compile_partition_expression (PARSER_CONTEXT *parser, PT_NODE *entity_name, PT_N
  * Note:
  */
 int
-do_check_partitioned_class (DB_OBJECT *classop, int check_map, char *keyattr)
+do_check_partitioned_class (DB_OBJECT * classop, int check_map, char *keyattr)
 {
   int error = NO_ERROR;
   int is_partition = 0;
@@ -4555,7 +4555,7 @@ do_check_partitioned_class (DB_OBJECT *classop, int check_map, char *keyattr)
  *                  sub-partition
  */
 int
-do_get_partition_parent (DB_OBJECT *const classop, MOP *const parentop)
+do_get_partition_parent (DB_OBJECT * const classop, MOP * const parentop)
 {
   int error = NO_ERROR;
   int au_save = 0;
@@ -4978,7 +4978,7 @@ exit:
  * Note:
  */
 static int
-do_find_auto_increment_serial (MOP *auto_increment_obj, const char *class_name, const char *attr_name)
+do_find_auto_increment_serial (MOP * auto_increment_obj, const char *class_name, const char *attr_name)
 {
   MOP serial_class = NULL;
   char *serial_name = NULL;
@@ -5035,7 +5035,7 @@ end:
  * Note:
  */
 static int
-adjust_partition_range (DB_OBJLIST *objs)
+adjust_partition_range (DB_OBJLIST * objs)
 {
   DB_OBJLIST *subs;
   SM_CLASS *subclass;
@@ -5218,7 +5218,7 @@ adjust_partition_range (DB_OBJLIST *objs)
  * Note:
  */
 static int
-adjust_partition_size (MOP class_, DB_CTMPL *tmpl)
+adjust_partition_size (MOP class_, DB_CTMPL * tmpl)
 {
   int error = NO_ERROR;
   SM_CLASS *smclass, *subclass;
@@ -5396,7 +5396,7 @@ do_get_partition_keycol (char *keycol, MOP class_)
  * Note:
  */
 int
-do_drop_partition_list (MOP class_, PT_NODE *name_list, DB_CTMPL *tmpl)
+do_drop_partition_list (MOP class_, PT_NODE * name_list, DB_CTMPL * tmpl)
 {
   PT_NODE *names;
   int error = NO_ERROR;
@@ -5522,7 +5522,7 @@ exit:
  *    - SM_CONSTRAINT_REVERSE_INDEX
  */
 static int
-do_create_partition_constraints (PARSER_CONTEXT *parser, PT_NODE *alter, SM_PARTITION_ALTER_INFO *pinfo)
+do_create_partition_constraints (PARSER_CONTEXT * parser, PT_NODE * alter, SM_PARTITION_ALTER_INFO * pinfo)
 {
   SM_CLASS *smclass = NULL;
   SM_CLASS_CONSTRAINT *cons = NULL;
@@ -5565,8 +5565,8 @@ do_create_partition_constraints (PARSER_CONTEXT *parser, PT_NODE *alter, SM_PART
  * constraint (in) : root constraint
  */
 static int
-do_create_partition_constraint (PT_NODE *alter, SM_CLASS *root_class, SM_CLASS_CONSTRAINT *constraint,
-				SM_PARTITION_ALTER_INFO *pinfo)
+do_create_partition_constraint (PT_NODE * alter, SM_CLASS * root_class, SM_CLASS_CONSTRAINT * constraint,
+				SM_PARTITION_ALTER_INFO * pinfo)
 {
   int error = NO_ERROR, i = 0;
   char **namep = NULL, **attrnames = NULL;
@@ -5811,7 +5811,7 @@ cleanup:
  *    - promote partitions
  */
 static int
-do_alter_partitioning_pre (PARSER_CONTEXT *parser, PT_NODE *alter, SM_PARTITION_ALTER_INFO *pinfo)
+do_alter_partitioning_pre (PARSER_CONTEXT * parser, PT_NODE * alter, SM_PARTITION_ALTER_INFO * pinfo)
 {
   PT_ALTER_CODE alter_op;
   int error = NO_ERROR;
@@ -5959,7 +5959,7 @@ do_alter_partitioning_pre (PARSER_CONTEXT *parser, PT_NODE *alter, SM_PARTITION_
  *    - N/A
  */
 static int
-do_alter_partitioning_post (PARSER_CONTEXT *parser, PT_NODE *alter, SM_PARTITION_ALTER_INFO *pinfo)
+do_alter_partitioning_post (PARSER_CONTEXT * parser, PT_NODE * alter, SM_PARTITION_ALTER_INFO * pinfo)
 {
   PT_ALTER_CODE alter_op;
   int error = NO_ERROR;
@@ -6053,7 +6053,7 @@ do_alter_partitioning_post (PARSER_CONTEXT *parser, PT_NODE *alter, SM_PARTITION
  *	 to understand the nature of post/pre actions
  */
 static int
-do_remove_partition_pre (PARSER_CONTEXT *parser, PT_NODE *alter, SM_PARTITION_ALTER_INFO *pinfo)
+do_remove_partition_pre (PARSER_CONTEXT * parser, PT_NODE * alter, SM_PARTITION_ALTER_INFO * pinfo)
 {
   SM_CLASS *class_ = NULL, *subclass = NULL;
   DB_OBJLIST *obj = NULL, *obj_next = NULL;
@@ -6170,7 +6170,7 @@ error_return:
  *	 to understand the nature of post/pre actions
  */
 static int
-do_remove_partition_post (PARSER_CONTEXT *parser, PT_NODE *alter, SM_PARTITION_ALTER_INFO *pinfo)
+do_remove_partition_post (PARSER_CONTEXT * parser, PT_NODE * alter, SM_PARTITION_ALTER_INFO * pinfo)
 {
   int error = NO_ERROR, i = 0;
   const char *root_name = NULL;
@@ -6227,7 +6227,7 @@ do_remove_partition_post (PARSER_CONTEXT *parser, PT_NODE *alter, SM_PARTITION_A
  *	to understand the nature of post/pre actions
  */
 static int
-do_coalesce_partition_pre (PARSER_CONTEXT *parser, PT_NODE *alter, SM_PARTITION_ALTER_INFO *pinfo)
+do_coalesce_partition_pre (PARSER_CONTEXT * parser, PT_NODE * alter, SM_PARTITION_ALTER_INFO * pinfo)
 {
   SM_CLASS *class_ = NULL, *subclass = NULL;
   MOP subclass_op = NULL;
@@ -6371,7 +6371,7 @@ error_return:
  *	 to understand the nature of post/pre actions
  */
 static int
-do_coalesce_partition_post (PARSER_CONTEXT *parser, PT_NODE *alter, SM_PARTITION_ALTER_INFO *pinfo)
+do_coalesce_partition_post (PARSER_CONTEXT * parser, PT_NODE * alter, SM_PARTITION_ALTER_INFO * pinfo)
 {
   int error = NO_ERROR, i = 0;
   const char *root_name = NULL;
@@ -6477,7 +6477,7 @@ exit:
  *	to understand the nature of post/pre actions
  */
 static int
-do_reorganize_partition_pre (PARSER_CONTEXT *parser, PT_NODE *alter, SM_PARTITION_ALTER_INFO *pinfo)
+do_reorganize_partition_pre (PARSER_CONTEXT * parser, PT_NODE * alter, SM_PARTITION_ALTER_INFO * pinfo)
 {
   PT_NODE *old_part = NULL, *new_part = NULL;
   int error = NO_ERROR;
@@ -6590,7 +6590,7 @@ error_return:
  *	 to understand the nature of post/pre actions
  */
 static int
-do_reorganize_partition_post (PARSER_CONTEXT *parser, PT_NODE *alter, SM_PARTITION_ALTER_INFO *pinfo)
+do_reorganize_partition_post (PARSER_CONTEXT * parser, PT_NODE * alter, SM_PARTITION_ALTER_INFO * pinfo)
 {
   int error = NO_ERROR, i = 0;
   const char *root_name = NULL;
@@ -6661,7 +6661,7 @@ do_reorganize_partition_post (PARSER_CONTEXT *parser, PT_NODE *alter, SM_PARTITI
  * alter (in)  : alter node
  */
 static int
-do_analyze_partition (PARSER_CONTEXT *parser, PT_NODE *alter, SM_PARTITION_ALTER_INFO *pinfo)
+do_analyze_partition (PARSER_CONTEXT * parser, PT_NODE * alter, SM_PARTITION_ALTER_INFO * pinfo)
 {
   PT_NODE *name = NULL;
   int error = NO_ERROR;
@@ -6738,7 +6738,7 @@ do_analyze_partition (PARSER_CONTEXT *parser, PT_NODE *alter, SM_PARTITION_ALTER
  *  will not be automatically created on the promoted table
  */
 static int
-do_promote_partition_list (PARSER_CONTEXT *parser, PT_NODE *alter, SM_PARTITION_ALTER_INFO *pinfo)
+do_promote_partition_list (PARSER_CONTEXT * parser, PT_NODE * alter, SM_PARTITION_ALTER_INFO * pinfo)
 {
   int error = NO_ERROR;
   char subclass_name[DB_MAX_IDENTIFIER_LENGTH];
@@ -6933,7 +6933,7 @@ do_promote_partition_by_name (const char *class_name, const char *part_num, char
  * class_ (in) : class to promote
  */
 static int
-do_promote_partition (SM_CLASS *class_)
+do_promote_partition (SM_CLASS * class_)
 {
   MOP subclass_mop = NULL;
   int error = NO_ERROR;
@@ -7063,7 +7063,7 @@ do_promote_partition (SM_CLASS *class_)
  * Note: Error reporting system
  */
 static int
-validate_attribute_domain (PARSER_CONTEXT *parser, PT_NODE *attribute, const bool check_zero_precision)
+validate_attribute_domain (PARSER_CONTEXT * parser, PT_NODE * attribute, const bool check_zero_precision)
 {
   int error = NO_ERROR;
 
@@ -7202,7 +7202,7 @@ validate_attribute_domain (PARSER_CONTEXT *parser, PT_NODE *attribute, const boo
 }
 
 static const char *
-get_attr_name (PT_NODE *attribute)
+get_attr_name (PT_NODE * attribute)
 {
   /* First try the derived name and then the original name. For example: create view a_view as select a av1, a av2, b
    * bv from a_tbl; */
@@ -7222,7 +7222,7 @@ get_attr_name (PT_NODE *attribute)
  * Note : The class object is modified
  */
 static int
-do_add_attribute (PARSER_CONTEXT *parser, DB_CTMPL *ctemplate, PT_NODE *attribute, PT_NODE *constraints,
+do_add_attribute (PARSER_CONTEXT * parser, DB_CTMPL * ctemplate, PT_NODE * attribute, PT_NODE * constraints,
 		  bool error_on_not_normal)
 {
   const char *attr_name = NULL;
@@ -7414,7 +7414,7 @@ error_exit:
  * Note : The class object is modified
  */
 static int
-do_add_attribute_from_select_column (PARSER_CONTEXT *parser, DB_CTMPL *ctemplate, DB_QUERY_TYPE *column)
+do_add_attribute_from_select_column (PARSER_CONTEXT * parser, DB_CTMPL * ctemplate, DB_QUERY_TYPE * column)
 {
   DB_VALUE default_value;
   int error = NO_ERROR;
@@ -7496,7 +7496,7 @@ error_exit:
 }
 
 static DB_QUERY_TYPE *
-query_get_column_with_name (DB_QUERY_TYPE *query_columns, const char *name)
+query_get_column_with_name (DB_QUERY_TYPE * query_columns, const char *name)
 {
   DB_QUERY_TYPE *column;
   char real_name[SM_MAX_IDENTIFIER_LENGTH];
@@ -7520,7 +7520,7 @@ query_get_column_with_name (DB_QUERY_TYPE *query_columns, const char *name)
 }
 
 static PT_NODE *
-get_attribute_with_name (PT_NODE *atts, const char *name)
+get_attribute_with_name (PT_NODE * atts, const char *name)
 {
   PT_NODE *crt_attr;
   char real_name[SM_MAX_IDENTIFIER_LENGTH];
@@ -7556,8 +7556,8 @@ get_attribute_with_name (PT_NODE *atts, const char *name)
  * Note : The class object is modified
  */
 int
-do_add_attributes (PARSER_CONTEXT *parser, DB_CTMPL *ctemplate, PT_NODE *atts, PT_NODE *constraints,
-		   DB_QUERY_TYPE *create_select_columns)
+do_add_attributes (PARSER_CONTEXT * parser, DB_CTMPL * ctemplate, PT_NODE * atts, PT_NODE * constraints,
+		   DB_QUERY_TYPE * create_select_columns)
 {
   PT_NODE *crt_attr;
   DB_QUERY_TYPE *column;
@@ -7645,7 +7645,7 @@ map_pt_to_sm_action (const PT_MISC_TYPE action)
  * Note:
  */
 static int
-add_foreign_key (DB_CTMPL *ctemplate, const PT_NODE *cnstr, const char **att_names)
+add_foreign_key (DB_CTMPL * ctemplate, const PT_NODE * cnstr, const char **att_names)
 {
   PT_FOREIGN_KEY_INFO *fk_info;
   const char *constraint_name = NULL;
@@ -7771,7 +7771,7 @@ add_foreign_key (DB_CTMPL *ctemplate, const PT_NODE *cnstr, const char **att_nam
  * Note : Class object is modified
  */
 int
-do_add_constraints (DB_CTMPL *ctemplate, PT_NODE *constraints)
+do_add_constraints (DB_CTMPL * ctemplate, PT_NODE * constraints)
 {
   int error = NO_ERROR;
   PT_NODE *cnstr;
@@ -8017,7 +8017,7 @@ constraint_error:
  * Note : The class object is not modified
  */
 static int
-do_check_fk_constraints_internal (DB_CTMPL *ctemplate, PT_NODE *constraints, bool is_partitioned)
+do_check_fk_constraints_internal (DB_CTMPL * ctemplate, PT_NODE * constraints, bool is_partitioned)
 {
   int error = NO_ERROR;
   PT_NODE *cnstr;
@@ -8124,7 +8124,7 @@ error_exit:
 * Note : The class object is not modified
 */
 int
-do_check_fk_constraints (DB_CTMPL *ctemplate, PT_NODE *constraints)
+do_check_fk_constraints (DB_CTMPL * ctemplate, PT_NODE * constraints)
 {
   bool is_partitioned = false;
   if (ctemplate == NULL)
@@ -8152,7 +8152,7 @@ do_check_fk_constraints (DB_CTMPL *ctemplate, PT_NODE *constraints)
  * Note : Class object is modified
  */
 int
-do_add_methods (PARSER_CONTEXT *parser, DB_CTMPL *ctemplate, PT_NODE *methods)
+do_add_methods (PARSER_CONTEXT * parser, DB_CTMPL * ctemplate, PT_NODE * methods)
 {
   const char *method_name, *method_impl;
   PT_NODE *args_list, *type, *type_list;
@@ -8327,7 +8327,7 @@ do_add_methods (PARSER_CONTEXT *parser, DB_CTMPL *ctemplate, PT_NODE *methods)
  * Note : Class object is modified
  */
 int
-do_add_method_files (const PARSER_CONTEXT *parser, DB_CTMPL *ctemplate, PT_NODE *method_files)
+do_add_method_files (const PARSER_CONTEXT * parser, DB_CTMPL * ctemplate, PT_NODE * method_files)
 {
   const char *method_file_name;
   int error = NO_ERROR;
@@ -8363,7 +8363,7 @@ do_add_method_files (const PARSER_CONTEXT *parser, DB_CTMPL *ctemplate, PT_NODE 
  * Note : Class object is modified
  */
 int
-do_add_supers (const PARSER_CONTEXT *parser, DB_CTMPL *ctemplate, const PT_NODE *supers)
+do_add_supers (const PARSER_CONTEXT * parser, DB_CTMPL * ctemplate, const PT_NODE * supers)
 {
   MOP super_class;
   int error = NO_ERROR;
@@ -8401,7 +8401,7 @@ do_add_supers (const PARSER_CONTEXT *parser, DB_CTMPL *ctemplate, const PT_NODE 
  * Note : Class object is modified
  */
 int
-do_add_resolutions (const PARSER_CONTEXT *parser, DB_CTMPL *ctemplate, const PT_NODE *resolution)
+do_add_resolutions (const PARSER_CONTEXT * parser, DB_CTMPL * ctemplate, const PT_NODE * resolution)
 {
   int error = NO_ERROR;
   DB_OBJECT *resolution_super_mop;
@@ -8459,7 +8459,7 @@ do_add_resolutions (const PARSER_CONTEXT *parser, DB_CTMPL *ctemplate, const PT_
  * Note : Class object is modified
  */
 static int
-add_query_to_virtual_class (PARSER_CONTEXT *parser, DB_CTMPL *ctemplate, const PT_NODE *queries)
+add_query_to_virtual_class (PARSER_CONTEXT * parser, DB_CTMPL * ctemplate, const PT_NODE * queries)
 {
   const char *query;
   int error = NO_ERROR;
@@ -8488,7 +8488,7 @@ add_query_to_virtual_class (PARSER_CONTEXT *parser, DB_CTMPL *ctemplate, const P
  * Note : class object modified
  */
 static int
-add_union_query (PARSER_CONTEXT *parser, DB_CTMPL *ctemplate, const PT_NODE *query)
+add_union_query (PARSER_CONTEXT * parser, DB_CTMPL * ctemplate, const PT_NODE * query)
 {
   int error = NO_ERROR;
 
@@ -8522,7 +8522,7 @@ add_union_query (PARSER_CONTEXT *parser, DB_CTMPL *ctemplate, const PT_NODE *que
  * Note : Class object is modified
  */
 int
-do_add_queries (PARSER_CONTEXT *parser, DB_CTMPL *ctemplate, const PT_NODE *queries)
+do_add_queries (PARSER_CONTEXT * parser, DB_CTMPL * ctemplate, const PT_NODE * queries)
 {
   int error = NO_ERROR;
 
@@ -8546,7 +8546,7 @@ do_add_queries (PARSER_CONTEXT *parser, DB_CTMPL *ctemplate, const PT_NODE *quer
  * Note : Class object is modified
  */
 int
-do_set_object_id (const PARSER_CONTEXT *parser, DB_CTMPL *ctemplate, PT_NODE *object_id_list)
+do_set_object_id (const PARSER_CONTEXT * parser, DB_CTMPL * ctemplate, PT_NODE * object_id_list)
 {
   int error = NO_ERROR;
   PT_NODE *object_id;
@@ -8588,7 +8588,8 @@ do_set_object_id (const PARSER_CONTEXT *parser, DB_CTMPL *ctemplate, PT_NODE *ob
  *   pt_node(in): Parse tree of a create class/vclass
  */
 int
-do_create_local (PARSER_CONTEXT *parser, DB_CTMPL *ctemplate, PT_NODE *pt_node, DB_QUERY_TYPE *create_select_columns)
+do_create_local (PARSER_CONTEXT * parser, DB_CTMPL * ctemplate, PT_NODE * pt_node,
+		 DB_QUERY_TYPE * create_select_columns)
 {
   int error = NO_ERROR;
 
@@ -8687,8 +8688,8 @@ do_create_local (PARSER_CONTEXT *parser, DB_CTMPL *ctemplate, PT_NODE *pt_node, 
  *   query_columns(in): the columns of the select statement
  */
 static PT_NODE *
-create_select_to_insert_into (PARSER_CONTEXT *parser, const char *class_name, PT_NODE *create_select,
-			      PT_CREATE_SELECT_ACTION create_select_action, DB_QUERY_TYPE *query_columns)
+create_select_to_insert_into (PARSER_CONTEXT * parser, const char *class_name, PT_NODE * create_select,
+			      PT_CREATE_SELECT_ACTION create_select_action, DB_QUERY_TYPE * query_columns)
 {
   PT_NODE *ins = NULL;
   PT_NODE *ocs = NULL;
@@ -8768,9 +8769,9 @@ error_exit:
  *                          INSERT statement
  */
 static int
-execute_create_select_query (PARSER_CONTEXT *parser, const char *const class_name, PT_NODE *create_select,
-			     PT_CREATE_SELECT_ACTION create_select_action, DB_QUERY_TYPE *query_columns,
-			     PT_NODE *flagged_statement)
+execute_create_select_query (PARSER_CONTEXT * parser, const char *const class_name, PT_NODE * create_select,
+			     PT_CREATE_SELECT_ACTION create_select_action, DB_QUERY_TYPE * query_columns,
+			     PT_NODE * flagged_statement)
 {
   PT_NODE *insert_into = NULL;
   PT_NODE *create_select_copy = parser_copy_tree (parser, create_select);
@@ -8846,7 +8847,7 @@ error_exit:
  *   node(in/out): Parse tree of a create class/vclass
  */
 int
-do_create_entity (PARSER_CONTEXT *parser, PT_NODE *node)
+do_create_entity (PARSER_CONTEXT * parser, PT_NODE * node)
 {
   int error = NO_ERROR;
   DB_CTMPL *ctemplate = NULL;
@@ -9253,15 +9254,12 @@ do_create_entity (PARSER_CONTEXT *parser, PT_NODE *node)
 	  assert (repl_opt == 0 || repl_opt == 1);
 	  if (repl_opt == 0)
 	    {
-#if 0
-	      error = sm_set_class_tde_algorithm (class_obj, tde_algo);
-	      if (error != NO_ERROR)
+	      error = sm_set_class_flag (class_obj, SM_CLASSFLAG_NO_REPLICATION, 1);
+	      if (error == NO_ERROR)
 		{
-		  break;
+		  do_flush_class_mop = true;
 		}
-#endif
 	    }
-	  do_flush_class_mop = true;
 	}
       error = sm_set_class_collation (class_obj, collation_id);
       if (error != NO_ERROR)
@@ -9422,7 +9420,7 @@ error_exit:
  *	   their expression must be modified and recompiled.
  */
 static int
-do_recreate_renamed_class_indexes (const PARSER_CONTEXT *parser, const char *const old_class_name,
+do_recreate_renamed_class_indexes (const PARSER_CONTEXT * parser, const char *const old_class_name,
 				   const char *const class_name)
 {
   int error = NO_ERROR;
@@ -9570,7 +9568,7 @@ error_exit:
  *   class_(in): the class to copy the indexes from
  */
 static int
-do_copy_indexes (PARSER_CONTEXT *parser, MOP classmop, SM_CLASS *src_class)
+do_copy_indexes (PARSER_CONTEXT * parser, MOP classmop, SM_CLASS * src_class)
 {
   int error = NO_ERROR;
   const char **att_names = NULL;
@@ -9739,7 +9737,7 @@ truncate_class_name (const char *name, const bool is_cascade)
  *   statement(in/out): Parse tree of the statement
  */
 int
-do_truncate (PARSER_CONTEXT *parser, PT_NODE *statement)
+do_truncate (PARSER_CONTEXT * parser, PT_NODE * statement)
 {
   int error = NO_ERROR;
   PT_NODE *entity_spec = NULL;
@@ -9801,7 +9799,7 @@ do_truncate (PARSER_CONTEXT *parser, PT_NODE *statement)
  *                  statement.
  */
 static int
-do_alter_clause_change_attribute (PARSER_CONTEXT *const parser, PT_NODE *const alter)
+do_alter_clause_change_attribute (PARSER_CONTEXT * const parser, PT_NODE * const alter)
 {
   int error = NO_ERROR;
   const PT_ALTER_CODE alter_code = alter->info.alter.code;
@@ -10195,7 +10193,7 @@ exit:
  *   alter(in/out): Parse tree of a PT_CHANGE_OWNER claus
  */
 static int
-do_alter_change_owner (PARSER_CONTEXT *const parser, PT_NODE *const alter)
+do_alter_change_owner (PARSER_CONTEXT * const parser, PT_NODE * const alter)
 {
   int error = NO_ERROR;
   MOP class_mop, user_mop;
@@ -10251,7 +10249,7 @@ do_alter_change_owner (PARSER_CONTEXT *const parser, PT_NODE *const alter)
  *   alter(in/out): Parse tree of a PT_CHANGE_OWNER claus
  */
 static int
-do_alter_change_default_cs_coll (PARSER_CONTEXT *const parser, PT_NODE *const alter)
+do_alter_change_default_cs_coll (PARSER_CONTEXT * const parser, PT_NODE * const alter)
 {
   int error = NO_ERROR;
   const char *entity_name = NULL;
@@ -10401,7 +10399,7 @@ exit:
  *   alter(in/out): Parse tree of a PT_CHANGE_TABLE_COMMENT clause
  */
 static int
-do_alter_change_tbl_comment (PARSER_CONTEXT *const parser, PT_NODE *const alter)
+do_alter_change_tbl_comment (PARSER_CONTEXT * const parser, PT_NODE * const alter)
 {
   int error = NO_ERROR;
   const char *entity_name = NULL;
@@ -10519,7 +10517,7 @@ exit:
  *   alter(in/out): Parse tree of a PT_CHANGE_COLUMN_COMMENT clause
  */
 static int
-do_alter_change_col_comment (PARSER_CONTEXT *const parser, PT_NODE *const alter_node)
+do_alter_change_col_comment (PARSER_CONTEXT * const parser, PT_NODE * const alter_node)
 {
   int error = NO_ERROR;
   int meta = 0, shared = 0;
@@ -10664,8 +10662,8 @@ exit:
  *   attribute(in/out): Attribute to add
  */
 static int
-do_change_att_schema_only (PARSER_CONTEXT *parser, DB_CTMPL *ctemplate, PT_NODE *attribute, PT_NODE *old_name_node,
-			   PT_NODE *constraints, SM_ATTR_PROP_CHG *attr_chg_prop, SM_ATTR_CHG_SOL *change_mode)
+do_change_att_schema_only (PARSER_CONTEXT * parser, DB_CTMPL * ctemplate, PT_NODE * attribute, PT_NODE * old_name_node,
+			   PT_NODE * constraints, SM_ATTR_PROP_CHG * attr_chg_prop, SM_ATTR_CHG_SOL * change_mode)
 {
   DB_VALUE stack_value;
   TP_DOMAIN *attr_db_domain = NULL;
@@ -11070,8 +11068,8 @@ exit:
  *
  */
 static int
-build_attr_change_map (PARSER_CONTEXT *parser, DB_CTMPL *ctemplate, PT_NODE *attr_def, PT_NODE *attr_old_name,
-		       PT_NODE *constraints, SM_ATTR_PROP_CHG *attr_chg_properties)
+build_attr_change_map (PARSER_CONTEXT * parser, DB_CTMPL * ctemplate, PT_NODE * attr_def, PT_NODE * attr_old_name,
+		       PT_NODE * constraints, SM_ATTR_PROP_CHG * attr_chg_properties)
 {
   TP_DOMAIN *attr_db_domain = NULL;
   SM_ATTRIBUTE *att = NULL;
@@ -11674,7 +11672,7 @@ build_attr_change_map (PARSER_CONTEXT *parser, DB_CTMPL *ctemplate, PT_NODE *att
  *   of attribute
  */
 static int
-build_att_type_change_map (TP_DOMAIN *curr_domain, TP_DOMAIN *req_domain, SM_ATTR_PROP_CHG *attr_chg_properties)
+build_att_type_change_map (TP_DOMAIN * curr_domain, TP_DOMAIN * req_domain, SM_ATTR_PROP_CHG * attr_chg_properties)
 {
   int error = NO_ERROR;
   const int MIN_DIGITS_FOR_INTEGER = TP_INTEGER_PRECISION;
@@ -12583,7 +12581,7 @@ build_att_type_change_map (TP_DOMAIN *curr_domain, TP_DOMAIN *req_domain, SM_ATT
  *   of attribute
  */
 static int
-build_att_coll_change_map (TP_DOMAIN *curr_domain, TP_DOMAIN *req_domain, SM_ATTR_PROP_CHG *attr_chg_properties)
+build_att_coll_change_map (TP_DOMAIN * curr_domain, TP_DOMAIN * req_domain, SM_ATTR_PROP_CHG * attr_chg_properties)
 {
   /* check collation change */
   if (TP_TYPE_HAS_COLLATION (TP_DOMAIN_TYPE (curr_domain)) && TP_TYPE_HAS_COLLATION (TP_DOMAIN_TYPE (req_domain)))
@@ -12654,8 +12652,8 @@ build_att_coll_change_map (TP_DOMAIN *curr_domain, TP_DOMAIN *req_domain, SM_ATT
  *	   before tracing the error.
  */
 static int
-check_att_chg_allowed (const char *att_name, const PT_TYPE_ENUM t, const SM_ATTR_PROP_CHG *attr_chg_prop,
-		       SM_ATTR_CHG_SOL chg_how, bool log_error_allowed, bool *new_attempt)
+check_att_chg_allowed (const char *att_name, const PT_TYPE_ENUM t, const SM_ATTR_PROP_CHG * attr_chg_prop,
+		       SM_ATTR_CHG_SOL chg_how, bool log_error_allowed, bool * new_attempt)
 {
   int error = NO_ERROR;
 
@@ -12930,7 +12928,7 @@ not_allowed:
  *
  */
 static bool
-is_att_property_structure_checked (const SM_ATTR_PROP_CHG *attr_chg_properties)
+is_att_property_structure_checked (const SM_ATTR_PROP_CHG * attr_chg_properties)
 {
   int i = 0;
 
@@ -12955,7 +12953,7 @@ is_att_property_structure_checked (const SM_ATTR_PROP_CHG *attr_chg_properties)
  *
  */
 static bool
-is_att_change_needed (const SM_ATTR_PROP_CHG *attr_chg_properties)
+is_att_change_needed (const SM_ATTR_PROP_CHG * attr_chg_properties)
 {
   int i = 0;
 
@@ -12998,7 +12996,7 @@ is_att_prop_set (const int prop, const int value)
  *
  */
 static void
-reset_att_property_structure (SM_ATTR_PROP_CHG *attr_chg_properties)
+reset_att_property_structure (SM_ATTR_PROP_CHG * attr_chg_properties)
 {
   int i = 0;
 
@@ -13029,7 +13027,7 @@ reset_att_property_structure (SM_ATTR_PROP_CHG *attr_chg_properties)
  *
  */
 static int
-get_att_order_from_def (PT_NODE *attribute, bool *ord_first, const char **ord_after_name)
+get_att_order_from_def (PT_NODE * attribute, bool * ord_first, const char **ord_after_name)
 {
   PT_NODE *ordering_info = NULL;
 
@@ -13070,7 +13068,7 @@ get_att_order_from_def (PT_NODE *attribute, bool *ord_first, const char **ord_af
 }
 
 static int
-check_default_on_update_clause (PARSER_CONTEXT *parser, PT_NODE *attribute)
+check_default_on_update_clause (PARSER_CONTEXT * parser, PT_NODE * attribute)
 {
   int error = NO_ERROR;
   PT_TYPE_ENUM desired_type = attribute->type_enum;
@@ -13189,7 +13187,8 @@ check_default_on_update_clause (PARSER_CONTEXT *parser, PT_NODE *attribute)
  *
  */
 static int
-get_att_default_from_def (PARSER_CONTEXT *parser, PT_NODE *attribute, DB_VALUE **default_value, const char *classname)
+get_att_default_from_def (PARSER_CONTEXT * parser, PT_NODE * attribute, DB_VALUE ** default_value,
+			  const char *classname)
 {
   int error = NO_ERROR;
   PT_NODE *def_val = NULL, *initial_def_val = NULL;
@@ -13508,7 +13507,7 @@ get_hard_default_for_type (PT_TYPE_ENUM type)
  *    It creates a complex UPDATE query and runs it.
  */
 static int
-do_run_update_query_for_new_notnull_fields (PARSER_CONTEXT *parser, PT_NODE *alter, PT_NODE *attr_list,
+do_run_update_query_for_new_notnull_fields (PARSER_CONTEXT * parser, PT_NODE * alter, PT_NODE * attr_list,
 					    int attr_count, MOP class_mop)
 {
   char *query, *q;
@@ -13600,7 +13599,7 @@ end:
  * Note : It creates a complex UPDATE query and runs it.
  */
 static int
-do_run_update_query_for_new_default_expression_fields (PARSER_CONTEXT *parser, PT_NODE *alter, PT_NODE *attr_list,
+do_run_update_query_for_new_default_expression_fields (PARSER_CONTEXT * parser, PT_NODE * alter, PT_NODE * attr_list,
 						       int attr_count, MOP class_mop)
 {
   char *query, *q;
@@ -13739,7 +13738,7 @@ is_attribute_primary_key (const char *class_name, const char *attr_name)
  *   alter(in):  Parse tree of the statement
  */
 static int
-do_update_new_notnull_cols_without_default (PARSER_CONTEXT *parser, PT_NODE *alter, MOP class_mop)
+do_update_new_notnull_cols_without_default (PARSER_CONTEXT * parser, PT_NODE * alter, MOP class_mop)
 {
   PT_NODE *relevant_attrs = NULL;
   int error = NO_ERROR;
@@ -13840,7 +13839,7 @@ end:
  *
  */
 static int
-do_update_new_cols_with_default_expression (PARSER_CONTEXT *parser, PT_NODE *alter, MOP class_mop)
+do_update_new_cols_with_default_expression (PARSER_CONTEXT * parser, PT_NODE * alter, MOP class_mop)
 {
   PT_NODE *relevant_attrs = NULL;
   int error = NO_ERROR;
@@ -13923,7 +13922,7 @@ end:
  *  att_id(in): constraint list
  */
 static int
-do_run_upgrade_instances_domain (PARSER_CONTEXT *parser, OID *p_class_oid, int att_id)
+do_run_upgrade_instances_domain (PARSER_CONTEXT * parser, OID * p_class_oid, int att_id)
 {
   int error = NO_ERROR;
 
@@ -13947,7 +13946,7 @@ do_run_upgrade_instances_domain (PARSER_CONTEXT *parser, OID *p_class_oid, int a
  *	 handled;  FOREIGN KEY constraints are not supported
  */
 static int
-do_drop_att_constraints (MOP class_mop, SM_CONSTRAINT_INFO *constr_info_list)
+do_drop_att_constraints (MOP class_mop, SM_CONSTRAINT_INFO * constr_info_list)
 {
   int error = NO_ERROR;
 
@@ -13988,7 +13987,7 @@ error_exit:
  *	 handled;  FOREIGN KEY constraints are not supported
  */
 static int
-do_recreate_att_constraints (MOP class_mop, SM_CONSTRAINT_INFO *constr_info_list)
+do_recreate_att_constraints (MOP class_mop, SM_CONSTRAINT_INFO * constr_info_list)
 {
   int error = NO_ERROR;
 
@@ -14024,8 +14023,8 @@ error_exit:
  *   attribute(in/out): Attribute to add
  */
 static int
-check_change_attribute (PARSER_CONTEXT *parser, DB_CTMPL *ctemplate, PT_NODE *attribute, PT_NODE *old_name_node,
-			PT_NODE **pointer_constraints, SM_ATTR_PROP_CHG *attr_chg_prop, SM_ATTR_CHG_SOL *change_mode)
+check_change_attribute (PARSER_CONTEXT * parser, DB_CTMPL * ctemplate, PT_NODE * attribute, PT_NODE * old_name_node,
+			PT_NODE ** pointer_constraints, SM_ATTR_PROP_CHG * attr_chg_prop, SM_ATTR_CHG_SOL * change_mode)
 {
   SM_NAME_SPACE name_space = ID_NULL;
   int meta = 0, shared = 0;
@@ -14228,7 +14227,7 @@ exit:
  *   alter(in): Node containing desired collation and codeset
  */
 static int
-check_change_class_collation (PARSER_CONTEXT *parser, DB_CTMPL *ctemplate, PT_ALTER_INFO *alter, bool *need_update,
+check_change_class_collation (PARSER_CONTEXT * parser, DB_CTMPL * ctemplate, PT_ALTER_INFO * alter, bool * need_update,
 			      int *collation_id)
 {
   int error = NO_ERROR;
@@ -14283,7 +14282,7 @@ check_change_class_collation (PARSER_CONTEXT *parser, DB_CTMPL *ctemplate, PT_AL
  */
 
 static int
-sort_constr_info_list (SM_CONSTRAINT_INFO **orig_list)
+sort_constr_info_list (SM_CONSTRAINT_INFO ** orig_list)
 {
   int error = NO_ERROR;
   SM_CONSTRAINT_INFO *sorted, *next, *prev, *ins, *found, *constr;
@@ -14363,7 +14362,7 @@ sort_constr_info_list (SM_CONSTRAINT_INFO **orig_list)
  *	  It process only one node; the 'next' PT_NODE is ignored.
  */
 static int
-save_constraint_info_from_pt_node (SM_CONSTRAINT_INFO **save_info, const PT_NODE *const pt_constr)
+save_constraint_info_from_pt_node (SM_CONSTRAINT_INFO ** save_info, const PT_NODE * const pt_constr)
 {
   int error_code = NO_ERROR;
   SM_CONSTRAINT_INFO *new_constraint = NULL;
@@ -14455,7 +14454,7 @@ error_exit:
  *
  */
 int
-do_check_rows_for_null (MOP class_mop, const char *att_name, bool *has_nulls)
+do_check_rows_for_null (MOP class_mop, const char *att_name, bool * has_nulls)
 {
   int error = NO_ERROR;
   int n = 0;
@@ -14670,7 +14669,7 @@ end:
  *	function index information
  */
 static SM_FUNCTION_INFO *
-pt_node_to_function_index (PARSER_CONTEXT *parser, PT_NODE *spec, PT_NODE *node, DO_INDEX do_index)
+pt_node_to_function_index (PARSER_CONTEXT * parser, PT_NODE * spec, PT_NODE * node, DO_INDEX do_index)
 {
   SM_FUNCTION_INFO *func_index_info;
   FUNC_PRED *func_pred;
@@ -14778,8 +14777,8 @@ error_exit:
  *
  */
 int
-do_recreate_func_index_constr (PARSER_CONTEXT *parser, SM_CONSTRAINT_INFO *constr, SM_FUNCTION_INFO *func_index_info,
-			       PT_NODE *alter, const char *src_cls_name, const char *new_cls_name)
+do_recreate_func_index_constr (PARSER_CONTEXT * parser, SM_CONSTRAINT_INFO * constr, SM_FUNCTION_INFO * func_index_info,
+			       PT_NODE * alter, const char *src_cls_name, const char *new_cls_name)
 {
   PT_NODE **stmt;
   PT_NODE *expr;
@@ -14979,7 +14978,7 @@ error:
  *
  */
 int
-do_recreate_filter_index_constr (PARSER_CONTEXT *parser, SM_PREDICATE_INFO *filter_index_info, PT_NODE *alter,
+do_recreate_filter_index_constr (PARSER_CONTEXT * parser, SM_PREDICATE_INFO * filter_index_info, PT_NODE * alter,
 				 const char *src_cls_name, const char *new_cls_name)
 {
   PT_NODE **stmt;
@@ -15234,7 +15233,7 @@ error:
  * Note:
  */
 static PT_NODE *
-replace_names_alter_chg_attr (PARSER_CONTEXT *parser, PT_NODE *node, void *void_arg, int *continue_walk)
+replace_names_alter_chg_attr (PARSER_CONTEXT * parser, PT_NODE * node, void *void_arg, int *continue_walk)
 {
   PT_NODE *alter = (PT_NODE *) void_arg;
   PT_NODE *old_name = NULL;
@@ -15296,7 +15295,7 @@ replace_names_alter_chg_attr (PARSER_CONTEXT *parser, PT_NODE *node, void *void_
  * Note:
  */
 static PT_NODE *
-pt_replace_names_index_expr (PARSER_CONTEXT *parser, PT_NODE *node, void *void_arg, int *continue_walk)
+pt_replace_names_index_expr (PARSER_CONTEXT * parser, PT_NODE * node, void *void_arg, int *continue_walk)
 {
   const char *new_name = (char *) void_arg;
 
@@ -15336,7 +15335,7 @@ pt_replace_names_index_expr (PARSER_CONTEXT *parser, PT_NODE *node, void *void_a
  */
 
 static int
-get_index_type_qualifiers (MOP obj, bool *is_reverse, bool *is_unique, const char *index_name)
+get_index_type_qualifiers (MOP obj, bool * is_reverse, bool * is_unique, const char *index_name)
 {
   int error_code = NO_ERROR;
   SM_CLASS_CONSTRAINT *sm_all_constraints = NULL;
@@ -15402,8 +15401,8 @@ get_index_type_qualifiers (MOP obj, bool *is_reverse, bool *is_unique, const cha
  * Note:
  */
 static SM_PARTITION *
-pt_node_to_partition_info (PARSER_CONTEXT *parser, PT_NODE *node, PT_NODE *entity_name, char *class_name,
-			   char *partition_name, DB_VALUE *minval)
+pt_node_to_partition_info (PARSER_CONTEXT * parser, PT_NODE * node, PT_NODE * entity_name, char *class_name,
+			   char *partition_name, DB_VALUE * minval)
 {
   DB_VALUE val, *ptval, *hashsize;
   PT_NODE *parts;
@@ -15609,7 +15608,7 @@ fail_return:
  *
  */
 static int
-do_save_all_indexes (MOP classmop, SM_CONSTRAINT_INFO **saved_index_info_listpp)
+do_save_all_indexes (MOP classmop, SM_CONSTRAINT_INFO ** saved_index_info_listpp)
 {
   int error = NO_ERROR;
   SM_CLASS_CONSTRAINT *c = NULL;
@@ -15673,7 +15672,7 @@ do_save_all_indexes (MOP classmop, SM_CONSTRAINT_INFO **saved_index_info_listpp)
  *   index_save_info :
  */
 static int
-do_drop_saved_indexes (MOP classmop, SM_CONSTRAINT_INFO *index_save_info)
+do_drop_saved_indexes (MOP classmop, SM_CONSTRAINT_INFO * index_save_info)
 {
   int error = NO_ERROR;
   SM_CONSTRAINT_INFO *saved = NULL;
@@ -15711,7 +15710,7 @@ do_drop_saved_indexes (MOP classmop, SM_CONSTRAINT_INFO *index_save_info)
  *   index_save_info :
  */
 static int
-do_recreate_saved_indexes (MOP classmop, SM_CONSTRAINT_INFO *index_save_info)
+do_recreate_saved_indexes (MOP classmop, SM_CONSTRAINT_INFO * index_save_info)
 {
   int error = NO_ERROR;
   SM_CONSTRAINT_INFO *saved = NULL;
@@ -15735,7 +15734,7 @@ do_recreate_saved_indexes (MOP classmop, SM_CONSTRAINT_INFO *index_save_info)
 }
 
 int
-do_alter_index_status (PARSER_CONTEXT *parser, const PT_NODE *statement)
+do_alter_index_status (PARSER_CONTEXT * parser, const PT_NODE * statement)
 {
   int error = NO_ERROR;
   DB_OBJECT *obj;
