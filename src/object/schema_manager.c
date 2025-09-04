@@ -3387,7 +3387,6 @@ sm_check_reuse_oid_class (MOP op)
 
 /*
  */
-
 bool
 sm_is_replication_class (MOP op)
 {
@@ -3402,6 +3401,8 @@ sm_is_replication_class (MOP op)
     }
 
   assert (false);
+
+  return false;
 }
 
 /*
