@@ -687,6 +687,59 @@ repl_log_abort_after_lsa (LOG_TDES * tdes, LOG_LSA * start_lsa)
   return NO_ERROR;
 }
 
+/*
+ * repl_get_record_count - the number of the replication records of the current transaction
+ *
+ * return: the number, or -1 when the transaction is not found
+ *
+ * NOTE: An update takes it on entry to know the records it logs (see repl_cancel_unfilled_update ()).
+ */
+int
+repl_get_record_count (THREAD_ENTRY * thread_p)
+{
+  LOG_TDES *tdes = LOG_FIND_CURRENT_TDES (thread_p);
+
+  return tdes != NULL ? tdes->cur_repl_record : -1;
+}
+
+/*
+ * repl_cancel_unfilled_update - drop the update records that a failed update logged without their target LSA
+ *
+ * return: nothing
+ *
+ *   from(in): the number of the replication records when the failed update began (repl_get_record_count ())
+ *
+ * NOTE: locator_update_index () logs the record of an updated row with a null target LSA, which
+ *	 locator_update_force () fills (repl_add_update_lsa ()) only when the whole update succeeds. When the update
+ *	 fails after the record is logged, e.g. on its foreign key check, the record keeps the null LSA and the commit
+ *	 writes it: a replica cannot find the row it updates (CBRD-28251). Rolling back the statement does not drop
+ *	 it either, since repl_log_abort_after_lsa () drops the records by their LSA. So the failed update drops its
+ *	 own unfilled records here. A record that has its LSA, such as one of a cascaded foreign key action that
+ *	 succeeded, is left to the rollback.
+ */
+void
+repl_cancel_unfilled_update (THREAD_ENTRY * thread_p, int from)
+{
+  LOG_TDES *tdes = LOG_FIND_CURRENT_TDES (thread_p);
+  LOG_REPL_RECORD *repl_rec_arr;
+  int i;
+
+  if (tdes == NULL || from < 0)
+    {
+      return;
+    }
+
+  repl_rec_arr = tdes->repl_records;
+  for (i = from; i < tdes->cur_repl_record; i++)
+    {
+      if ((repl_rec_arr[i].rcvindex == RVREPL_DATA_UPDATE || repl_rec_arr[i].rcvindex == RVREPL_DATA_UPDATE_START
+	   || repl_rec_arr[i].rcvindex == RVREPL_DATA_UPDATE_END) && LSA_ISNULL (&repl_rec_arr[i].lsa))
+	{
+	  repl_rec_arr[i].must_flush = LOG_REPL_DONT_NEED_FLUSH;
+	}
+    }
+}
+
 #if defined(CUBRID_DEBUG)
 /*
  * repl_debug_info - DEBUGGING Function, print out the replication log info.
